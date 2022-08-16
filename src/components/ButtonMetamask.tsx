@@ -11,24 +11,15 @@ import _ from 'lodash';
 
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
-  color: '#DF4A32',
-  backgroundColor: 'white',
-  width: 160,
-  [theme.breakpoints.down(600)]: {
-    width: 140,
-  },
-  [theme.breakpoints.down(400)]: {
-    width: 100,
-  },
-  [theme.breakpoints.down(300)]: {
-    width: 40,
-  },
-  height:60,
-  borderRadius:12,
-  fontFamily:"Poppins_600SemiBold",
-  '&:hover': {
+  color: theme.palette.getContrastText("#637bfe"),
+  backgroundColor: "#637bfe",
+  height: 50,
+  borderRadius: 12,
+  fontFamily: "Poppins_600SemiBold",
+  fontSize: 14,
+  "&:hover": {
     backgroundColor: grey[700],
-  }, 
+  },
 }));
 
 export default function ButtonMetamask(props) {
@@ -149,22 +140,19 @@ let navigate = useNavigate();
 
 function handleClickLoginIn() {navigate("/home")}
 
-  return ( <Button  startIcon={<CardMedia
-    sx={{ width: { xs:25, sm:26, md: 28, lg:28, xl:28 }, objectFit: 'cover', }}
-  />} style={{flexDirection:"row",width:300,justifyContent:"center",alignItems:"center"}} variant="contained" >
-      {!isLoading?
-      <Box  onClick={onClickHandler}  style={{flexDirection:"row",width:300,justifyContent:"center",alignConten:"center",alignItems:"center"}}>
-        
-     
-      <Typography sx={{color:"black", alignSelf:"center",fontFamily:"Poppins_600SemiBold"}}>
-       
-      Connect Wallet
-    </Typography>
-      </Box > :
+  return ( <Box  style={{flexDirection:"row",width:120,justifyContent:"center",alignItems:"center"}} >
+      {!isLoading?     <ColorButton
+      sx={{fontFamily: "Orbitron_700Bold", color: "#fff", alignSelf: "center", my: 2 }}
+      onClick={onClickHandler}  
+      variant="contained"
+    >
+      CONNECT
+    </ColorButton>
+    :
       <CircularProgress color="secondary" size="1.5rem" />}
      
       
-    </Button>)}
+    </Box>)}
 
 
 

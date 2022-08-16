@@ -36,8 +36,8 @@ const useStyles = makeStyles(() => ({
     '&:hover': {
       borderColor: '#676767',
     },
-    width: 160,
-    height:55,
+    width: 100,
+    height:40,
     color:' #fff',
     display:'flex',
     mx:2.5
@@ -84,16 +84,15 @@ export const DropdownMenuDemo = (props) => {
                       <Stack  sx={{alignSelf:'center',alignItems:'center',mr:0.5}}>
 
                       <Typography 
-                        sx={{
-                          fontFamily:"Poppins_600SemiBold",
-                          color:"white",
+                        sx={{fontFamily: "Orbitron_700Bold",
+                          color:"green",
                           fontSize:12,
                           overflow: 'hidden',
                           whiteSpace: 'nowrap',
                           maxWidth: 120,
                           textOverflow: 'ellipsis'
                         }}>
-                        {"Connected" }
+                        {"ONLINE" }
                       </Typography>
                   
                      
