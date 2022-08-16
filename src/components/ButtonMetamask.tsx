@@ -140,9 +140,9 @@ let navigate = useNavigate();
 
 function handleClickLoginIn() {navigate("/home")}
 
-  return ( <Box  style={{flexDirection:"row",width:120,justifyContent:"center",alignItems:"center"}} >
+  return ( <Box  style={{flexDirection:"row",width:60,justifyContent:"center",alignItems:"center"}} >
       {!isLoading?     <ColorButton
-      sx={{fontFamily: "Orbitron_700Bold", color: "#fff", alignSelf: "center", my: 2 }}
+      sx={{fontFamily: "Orbitron_700Bold", fontSize:14,color: "#fff", alignSelf: "center", marginRight:5 }}
       onClick={onClickHandler}  
       variant="contained"
     >

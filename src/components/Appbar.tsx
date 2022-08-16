@@ -40,34 +40,27 @@ sx={{
 >
   <Stack 
   direction="row"
-  justifyContent="space-between" 
+  justifyContent={{xs:"center", sm:"space-between", md:"space-between", lg:"space-between", xl:"space-between"}}
   alignItems="center" 
   height={{xs: 70, sm: 70, md:70}}
   mt={1}
   mx={{xs:2, sm:5, md:5, lg:2, xl:2}}
   >
 
-    <Box 
-      onClick={() => navigate("/")}
-      sx={{
-        width: 200,
-        height: 70,
-      }}
-    >
       <CardMedia
+      onClick={() => navigate("/")}
       component="img"
       image={Logo}
       alt="Logo"
       sx={{
-        width: '100%',
-        height:'100%',
+        width: '160px',
+        height:'70px',
         objectFit:'contain',
         cursor: 'pointer',
       }}
       />
-    </Box>
 
-    <Stack direction='row' spacing={2} sx={{justifyContent:'center', alignItems:'center'}}>
+    <Stack direction='row' spacing={{xs:0,sm:1,md:2,lg:2, xl:2}} sx={{width:120,justifyContent:'center', alignItems:'center'}}>
 
     <Box sx={{ display:  {xs:'block', sm:'block', md:'block', lg:'block', xl:'block'}}}>
 
@@ -79,25 +72,11 @@ sx={{
               userAddress={props.ethAddress } 
               />
               
-              <CardMedia
-            component="img"
-            image={polygon}
-            alt="Logo"
-            sx={{width: {xs:40, sm:'none', md:50, lg:50, xl:50}, objectFit:'cover',}}
-            />  
             </Stack>   
               :
-            <Stack direction="row" spacing={1} sx={{justifyContent:'center', alignItems:'center'}}>
-              <Box sx={{ display: {xs:'none', sm:'block', md:'block', lg:'block', xl:'block'} }}> 
+            <Stack direction="row" sx={{width:100,justifyContent:'center', alignItems:'center'}}>
            
               <ButtonMetamask/>
-              </Box> 
-              <CardMedia
-            component="img"
-            image={polygon}
-            alt="Logo"
-            sx={{width: {xs:40, sm:'none', md:50, lg:50, xl:50}, objectFit:'cover',}}
-            />  
             </Stack>}
 
       
