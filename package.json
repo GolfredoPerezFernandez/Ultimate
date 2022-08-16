@@ -31,6 +31,7 @@
     "add": "^2.0.6",
     "dayjs": "^1.11.4",
     "expo": "46.0.6",
+    "expo-cli": "^6.0.2",
     "expo-status-bar": "~1.4.0",
     "formik": "^2.2.9",
     "magic-sdk": "7.0.0",
