@@ -303,7 +303,6 @@ export default function Home(props: any) {
 
       let res2 = await Moralis.executeFunction(sendOptions1);
       let espera1 = await res2.wait(2);
-      let user = await Moralis.User.current();
       console.log();
       setLoading(false);
       return;
@@ -332,7 +331,6 @@ export default function Home(props: any) {
 
       let res2 = await Moralis.executeFunction(sendOptions1);
       let espera1 = await res2.wait(2);
-      let user = await Moralis.User.current();
       console.log();
       setLoading(false);
       return;
@@ -361,7 +359,6 @@ export default function Home(props: any) {
 
       let res2 = await Moralis.executeFunction(sendOptions1);
       let espera1 = await res2.wait(2);
-      let user = await Moralis.User.current();
       console.log();
       setLoading(false);
       return;
@@ -390,7 +387,6 @@ export default function Home(props: any) {
 
       let res2 = await Moralis.executeFunction(sendOptions1);
       let espera1 = await res2.wait(2);
-      let user = await Moralis.User.current();
       console.log();
       setLoading(false);
       return;
@@ -431,19 +427,70 @@ export default function Home(props: any) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
-  const handleBuy = async () => {
+
+  const handleBuy3 = async () => {
     setLoading(true);
     try {
       console.log(Moralis.Units.ETH(parseFloat(values.amount) * 0.005));
       console.log(parseFloat(values.amount));
       const sendOptions1 = {
-        contractAddress: "0xe7Ed375Fd13F4CbE4AcaA0dc48f48Bdf8CFA7155",
+        contractAddress: "0x846FA2Bf45A7064Caa854BD0d8F232C9193733d0",
+        functionName: "tokenPrice",
+        msgValue: Moralis.Units.ETH(parseFloat(values.amount) * 0.005),
+        abi: abi.crowdFunding,
+        awaitReceipt: true, // should be switched to false
+        params: {
+        },
+      };
+
+      let res2 = await Moralis.executeFunction(sendOptions1);
+      let espera1 = await res2.wait(2);
+      console.log(JSON.stringify(espera1));
+      setLoading(false);
+      return;
+    } catch {
+      setLoading(false);
+      return;
+    }
+  };
+  const handleBuy2 = async () => {
+    setLoading(true);
+    console.log("endSale");
+    try {
+      console.log(parseFloat(values.amount));
+      console.log("endSale");
+      const sendOptions1 = {
+        contractAddress: "0x846FA2Bf45A7064Caa854BD0d8F232C9193733d0",
+        functionName: "endSale",
+        abi: abi.crowdFunding,
+        awaitReceipt: true, // should be switched to false
+   
+      };
+
+      let res2 = await Moralis.executeFunction(sendOptions1);
+      let espera1 = await res2.wait(2);
+      console.log(JSON.stringify(espera1));
+      setLoading(false);
+      return;
+    } catch {
+      setLoading(false);
+      return;
+    }
+  };
+  const handleBuy = async (address) => {
+    setLoading(true);
+    try {
+      console.log(user.get("ethAddress"));
+      console.log(Moralis.Units.ETH(parseFloat(values.amount) * 0.005));
+      console.log(parseFloat(values.amount));
+      const sendOptions1 = {
+        contractAddress: "0x846FA2Bf45A7064Caa854BD0d8F232C9193733d0",
         functionName: "buyTokens",
         msgValue: Moralis.Units.ETH(parseFloat(values.amount) * 0.005),
         abi: abi.crowdFunding,
         awaitReceipt: true, // should be switched to false
         params: {
-          _numberOfTokens: parseFloat(values.amount),
+          beneficiary: user.get("ethAddress"),
         },
       };
 
@@ -675,6 +722,7 @@ export default function Home(props: any) {
                     value={values.amount}
                     onChange={handleChanges("amount")}
                     type={"number"}
+                    style={{justifyContent:"center",alignItems:"center"}}
                     placeholder="Enter amount of tokens"
                     inputProps={{
                       inputMode: "numeric",
@@ -708,7 +756,7 @@ export default function Home(props: any) {
                     }
                   />
                 </FormControl>
-                {props.ethAddress == "" ? null : (
+                { props.ethAddress === ""? null : (
                   <ColorButton
                     sx={{
                       color: "#fff",
@@ -716,10 +764,24 @@ export default function Home(props: any) {
                       alignSelf: "center",
                       my: 2,
                     }}
-                    onClick={() => handleBuy()}
+                    onClick={() => handleBuy(props.ethAddress)}
                     variant="contained"
                   >
                     BUY TOKENS
+                  </ColorButton>
+                )}
+                   {props.ethAddress !== "0xFD0C8Bb919780A03CF471974a65f5d5BC2Ba4A82".toLowerCase()|| props.ethAddress == "" ? null : (
+                  <ColorButton
+                    sx={{
+                      color: "#fff",
+                      fontFamily: "Orbitron_700Bold",
+                      alignSelf: "center",
+                      my: 2,
+                    }}
+                    onClick={() => handleBuy2()}
+                    variant="contained"
+                  >
+                   ENDSALE
                   </ColorButton>
                 )}
               </Stack>
@@ -1490,7 +1552,7 @@ export default function Home(props: any) {
 
                 <ColorButton
                   sx={{ color: "#fff", alignSelf: "center", my: 2 }}
-                  onClick={() => handleBuy()}
+                  onClick={() => handleBuy(props.ethAddress)}
                   variant="contained"
                 >
                   Buy TOKENS
@@ -1505,8 +1567,6 @@ export default function Home(props: any) {
             sx={{
               boxShadow: "0px 0px 8px 1px rgba(0,0,0,0.2)",
               borderRadius: 6,
-              opacity: 0.4,
-              backgroundColor: "#ffff",
             }}
             item
             xs={12}

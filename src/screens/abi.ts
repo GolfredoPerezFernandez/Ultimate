@@ -531,9 +531,9 @@ export const crowdFunding=[
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "_numberOfTokens",
-				"type": "uint256"
+				"internalType": "address",
+				"name": "beneficiary",
+				"type": "address"
 			}
 		],
 		"name": "buyTokens",
@@ -543,7 +543,7 @@ export const crowdFunding=[
 	},
 	{
 		"inputs": [],
-		"name": "endSale",
+		"name": "renounceOwnership",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -551,14 +551,19 @@ export const crowdFunding=[
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "_dappTokenAddress",
+				"internalType": "uint256",
+				"name": "pRate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address payable",
+				"name": "pWallet",
 				"type": "address"
 			},
 			{
-				"internalType": "uint256",
-				"name": "_tokenPrice",
-				"type": "uint256"
+				"internalType": "address",
+				"name": "pToken",
+				"type": "address"
 			}
 		],
 		"stateMutability": "nonpayable",
@@ -568,24 +573,111 @@ export const crowdFunding=[
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
+				"indexed": true,
 				"internalType": "address",
-				"name": "_buyer",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "rate",
+				"type": "uint256"
+			}
+		],
+		"name": "setRate",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "purchaser",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "beneficiary",
 				"type": "address"
 			},
 			{
 				"indexed": false,
 				"internalType": "uint256",
-				"name": "_amount",
+				"name": "value",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
 				"type": "uint256"
 			}
 		],
-		"name": "Sell",
+		"name": "TokensPurchased",
 		"type": "event"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
+	},
+	{
 		"inputs": [],
-		"name": "dappToken",
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "rate",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "token",
 		"outputs": [
 			{
 				"internalType": "contract IERC20",
@@ -598,12 +690,12 @@ export const crowdFunding=[
 	},
 	{
 		"inputs": [],
-		"name": "tokenPrice",
+		"name": "wallet",
 		"outputs": [
 			{
-				"internalType": "uint256",
+				"internalType": "address payable",
 				"name": "",
-				"type": "uint256"
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -611,7 +703,7 @@ export const crowdFunding=[
 	},
 	{
 		"inputs": [],
-		"name": "tokensSold",
+		"name": "weiRaised",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -623,7 +715,6 @@ export const crowdFunding=[
 		"type": "function"
 	}
 ]
-
 
 export const coin=[
 	{
