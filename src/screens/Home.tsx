@@ -434,7 +434,7 @@ export default function Home(props: any) {
       console.log(Moralis.Units.ETH(parseFloat(values.amount) * 0.005));
       console.log(parseFloat(values.amount));
       const sendOptions1 = {
-        contractAddress: "0x846FA2Bf45A7064Caa854BD0d8F232C9193733d0",
+        contractAddress: "0xBff943Dda4C96FA0ffB5Cc6903B5e74ef70fD926",
         functionName: "tokenPrice",
         msgValue: Moralis.Units.ETH(parseFloat(values.amount) * 0.005),
         abi: abi.crowdFunding,
@@ -460,7 +460,7 @@ export default function Home(props: any) {
       console.log(parseFloat(values.amount));
       console.log("endSale");
       const sendOptions1 = {
-        contractAddress: "0x846FA2Bf45A7064Caa854BD0d8F232C9193733d0",
+        contractAddress: "0xBff943Dda4C96FA0ffB5Cc6903B5e74ef70fD926",
         functionName: "endSale",
         abi: abi.crowdFunding,
         awaitReceipt: true, // should be switched to false
@@ -484,7 +484,7 @@ export default function Home(props: any) {
       console.log(Moralis.Units.ETH(parseFloat(values.amount) * 0.005));
       console.log(parseFloat(values.amount));
       const sendOptions1 = {
-        contractAddress: "0x846FA2Bf45A7064Caa854BD0d8F232C9193733d0",
+        contractAddress: "0xBff943Dda4C96FA0ffB5Cc6903B5e74ef70fD926",
         functionName: "buyTokens",
         msgValue: Moralis.Units.ETH(parseFloat(values.amount) * 0.005),
         abi: abi.crowdFunding,
