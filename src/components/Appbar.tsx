@@ -74,7 +74,7 @@ sx={{
               
             </Stack>   
               :
-            <Stack direction="row" sx={{width:100,justifyContent:'center', alignItems:'center'}}>
+            <Stack direction="row" sx={{width:100,justifyContent:'center', marginRight:5,alignItems:'center'}}>
            
               <ButtonMetamask/>
             </Stack>}

@@ -452,7 +452,7 @@ export default function Home(props: any) {
 
       let res3 = await Moralis.executeFunction(sendOptions2);
       
-   await res2.wait(res3);
+   await res3.wait(3);
       const sendOptions1 = {
         contractAddress: "0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C",
         functionName: "deposit",
