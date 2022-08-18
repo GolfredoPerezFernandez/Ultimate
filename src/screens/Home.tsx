@@ -445,12 +445,14 @@ export default function Home(props: any) {
         abi: abi.token,
         awaitReceipt: true, // should be switched to false
         params: {
-          spender: user.get("ethAddress"),
+          spender: "0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C",
           amount: Moralis.Units.ETH(values.amount),
         },
       };
 
       let res3 = await Moralis.executeFunction(sendOptions2);
+      
+   await res2.wait(res3);
       const sendOptions1 = {
         contractAddress: "0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C",
         functionName: "deposit",
