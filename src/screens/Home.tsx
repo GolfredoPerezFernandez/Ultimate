@@ -211,6 +211,7 @@ export default function Home(props: any) {
   }
 
   const classes = useStyles();
+  const [pending, setPending] = React.useState(0);
   const [holders, setHolders] = React.useState(0);
   const [circulating, setCirculating] = React.useState(0);
   const [totalSupply, setTotalSupply] = React.useState(0);
@@ -223,6 +224,7 @@ export default function Home(props: any) {
   React.useEffect(() => {
     async function init() {
       await enableWeb3();
+      handlegetDeposit()
       if (isWeb3Enabled) {
         const options3 = {
           contractAddress: "0x301d135E85FA8C8839Ba738eA4Cc9868Cab520Bd",
@@ -428,6 +430,124 @@ export default function Home(props: any) {
   };
 
 
+  const handleDeposit = async () => {
+
+
+    setLoading(true);
+    console.log("endSale");
+    try {
+      console.log(parseFloat(values.amount));
+      console.log("endSale");
+      const sendOptions1 = {
+        contractAddress: "0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C",
+        functionName: "deposit",
+        abi: abi.masterUlti,
+        awaitReceipt: true, // should be switched to false
+        params: {
+          pid: 0,
+          amount: Moralis.Units.ETH(values.amount),
+          to: user.get("ethAddress"),
+        },
+      };
+
+      let res2 = await Moralis.executeFunction(sendOptions1);
+      let espera1 = await res2.wait(2);
+      console.log(JSON.stringify(espera1));
+      setLoading(false);
+      return;
+    } catch {
+      setLoading(false);
+      return;
+    }
+  }
+  const handlegetDeposit= async () => {  
+
+    setLoading(true);
+    console.log("endSale");
+    try {
+      console.log(user.get("ethAddress"));
+      console.log("endSale");
+      const sendOptions1 = {
+        contractAddress: "0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C",
+        functionName: "userInfo",
+        abi: abi.masterUlti,
+        awaitReceipt: true, // should be switched to false
+        params: {
+          "": 0,
+          "": "0xFD0C8Bb919780A03CF471974a65f5d5BC2Ba4A82",
+        }
+      }
+
+      console.log("endSale");
+      let res2 = await Moralis.executeFunction(sendOptions1);
+      console.log("endSale"+res2);
+      
+      return;
+    } catch (e) {
+      console.log(e.message)
+      return;
+    }
+
+    }
+  const handlePending= async () => {  
+
+    setLoading(true);
+    console.log("endSale");
+    try {
+      console.log(parseFloat(values.amount));
+      console.log("endSale");
+      const sendOptions1 = {
+        contractAddress: "0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C",
+        functionName: "pendingReward",
+        abi: abi.masterUlti,
+        awaitReceipt: true, // should be switched to false
+        params: {
+          _pid: 0,
+          _user: user.get("ethAddress"),
+        },
+      };
+      console.log("endSale");
+      let res2 = await Moralis.executeFunction(sendOptions1);
+      console.log("endSale"+res2);
+      
+setPending(Moralis.Units.FromWei(res2))
+      setLoading(false);
+      return;
+    } catch {
+      setLoading(false);
+      return;
+    }
+
+    }
+  const handleHarvest = async () => {  
+
+    setLoading(true);
+    console.log("endSale");
+    try {
+      console.log(parseFloat(values.amount));
+      console.log("endSale");
+      const sendOptions1 = {
+        contractAddress: "0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C",
+        functionName: "harvest",
+        abi: abi.masterUlti,
+        awaitReceipt: true, // should be switched to false
+        params: {
+          pid: 0,
+          to: user.get("ethAddress"),
+        },
+      };
+
+      let res2 = await Moralis.executeFunction(sendOptions1);
+      let espera1 = await res2.wait(2);
+      console.log(JSON.stringify(espera1));
+      setLoading(false);
+      return;
+    } catch {
+      setLoading(false);
+      return;
+    }
+
+    }
   const handleBuy3 = async () => {
     setLoading(true);
     try {
@@ -465,6 +585,35 @@ export default function Home(props: any) {
         abi: abi.crowdFunding,
         awaitReceipt: true, // should be switched to false
    
+      };
+
+      let res2 = await Moralis.executeFunction(sendOptions1);
+      let espera1 = await res2.wait(2);
+      console.log(JSON.stringify(espera1));
+      setLoading(false);
+      return;
+    } catch {
+      setLoading(false);
+      return;
+    }
+  };
+  const handleWithdraw = async () => {
+    
+    setLoading(true);
+    console.log("endSale");
+    try {
+      console.log(parseFloat(values.amount));
+      console.log("endSale");
+      const sendOptions1 = {
+        contractAddress: "0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C",
+        functionName: "withdraw",
+        abi: abi.masterUlti,
+        awaitReceipt: true, // should be switched to false
+        params: {
+          pid: 0,
+          amount: values.amount,
+          to: user.get("ethAddress"),
+        },
       };
 
       let res2 = await Moralis.executeFunction(sendOptions1);
@@ -1023,13 +1172,13 @@ export default function Home(props: any) {
             </Stack>
           </Grid>
         </Grid>
-{false?
+{true?
         <Grid
           my={3}
           direction="row"
           container
           sx={{
-            justifyContent:'space-between',
+            justifyContent:'center',
             alignItems:'center',
             border: "1px solid rgba(117, 117, 117, 0.1)",
             boxShadow: "0px 0px 8px 2px rgba(0,0,0,0.3)",
@@ -1045,18 +1194,45 @@ export default function Home(props: any) {
           >
             <Stack spacing={1} sx={{mx: 4, alignItems:'center', flexDirection: "row" }}>
 
-              <Avatar
-                alt="Remy Sharp"
-                src="/static/images/avatar/1.jpg"
-                sx={{ width: 46, height: 46 }}
-              />
+
               <Stack
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "5px",
+                  alignSelf: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <FormControl
+                  fullWidth
+                  sx={{ maxWidth: 300, alignSelf: "center", my: 2 }}
+                  variant="standard"
+                >
+                     <Stack
                 sx={{
                   mx: 6,
                   justifyContent: "center",
+                  alignItems:"center",
                   maxWidth: {xs:130, sm:200, md:300, lg:522, xl:522},
                 }}
               >
+                
+              <Avatar
+                alt="Remy Sharp"
+                src={Logo2}
+                sx={{ width: 46, height: 46 }}
+              />
+              <Typography
+                    sx={{
+                      fontFamily: "Orbitron_900Black",
+                      color: "#FFF",
+                      textAlign: "center",
+                      fontSize: 24,
+                    }}
+                  >
+                    Stake Your Tokens Now!
+                  </Typography>
                 <Typography
                   sx={{
                     mx:2,
@@ -1080,6 +1256,8 @@ export default function Home(props: any) {
                     fontFamily: "Orbitron_700Bold",
                     color: "#FFF",
                     fontSize: 20,
+                    marginTop:2,
+                    marginBottom:2,
                     letterSpacing: 1,
                     overflowWrap: "break-word",
                     hyphens: "auto",
@@ -1089,13 +1267,93 @@ export default function Home(props: any) {
                     textOverflow: "ellipsis",
                   }}
                 >
-                  PAW-MATIC LP
+                  ULTI-MATIC LP
                 </Typography>
               </Stack>
+              
 
+                  <Input
+                    className={classes.customSelect}
+                    sx={{
+                      mt: -2,
+                      input: {
+                        height: 47,
+                        color: "#FFF",
+                        fontFamily: "Orbitron_700Bold",
+                        fontSize: 14,
+                      },
+                    }}
+                    id="standard-adornment-amount"
+                    value={values.amount}
+                    onChange={handleChanges("amount")}
+                    type={"number"}
+                    style={{justifyContent:"center",alignItems:"center"}}
+                    placeholder="Enter amount of tokens"
+                    inputProps={{
+                      inputMode: "numeric",
+                      pattern: "[0-9]*",
+                      maxLength: 12,
+                    }}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <CardMedia
+                          component="img"
+                          image={Logo2}
+                          alt="Logo"
+                          sx={{
+                            width: "25px",
+                            height: "25px",
+                            alignSelf: "center",
+                            objectFit: "contain",
+                            cursor: "pointer",
+                          }}
+                        />
+                        <Typography
+                          sx={{
+                            fontFamily: "Orbitron_700Bold",
+                            color: "#FFF",
+                            fontSize: 12,
+                          }}
+                        >
+                          {"ULTI"}
+                        </Typography>
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+                { props.ethAddress === ""? null : (
+                  <ColorButton
+                    sx={{
+                      color: "#fff",
+                      fontFamily: "Orbitron_700Bold",
+                      alignSelf: "center",
+                      my: 2,
+                    }}
+                    onClick={() => handleDeposit(props.ethAddress)}
+                    variant="contained"
+                  >
+                    DEPOSIT
+                  </ColorButton>
+                )}
+                   {props.ethAddress !== "0xFD0C8Bb919780A03CF471974a65f5d5BC2Ba4A82".toLowerCase()|| props.ethAddress == "" ? null : (
+                  <ColorButton
+                    sx={{
+                      color: "#fff",
+                      fontFamily: "Orbitron_700Bold",
+                      alignSelf: "center",
+                      my: 2,
+                    }}
+                    onClick={() => handleWithdraw()}
+                    variant="contained"
+                  >
+                   WITHDRAW
+                  </ColorButton>
+                )}
+              </Stack>
             </Stack>
+            
           </Grid>
-
+          
           <Grid
             item
             xs={12}
@@ -1110,14 +1368,14 @@ export default function Home(props: any) {
                 mx:4, 
                 my:4, 
                 flexDirection: "row", 
-                justifyContent: "space-between", 
+                justifyContent: "center", 
                 alignItems:'center',
                 borderRadius: 6,
                 boxShadow: "0px 0px 8px 2px rgba(0,0,0,0.3)",
                 border: "1px solid rgba(117, 117, 117, 0.1)",
               }}
             >
-              <Stack sx={{ mx:2, justifyContent: "space-between"}}>
+              <Stack sx={{ mx:2, justifyContent: "center"}}>
                 <Stack
                   sx={{
                     justifyContent: "center",
@@ -1125,86 +1383,41 @@ export default function Home(props: any) {
                     height: "131px",
                   }}
                 >
-                  <Typography
+                  
+          { props.ethAddress === ""? null : (
+                  <ColorButton
                     sx={{
-                      mx:2,
+                      color: "#fff",
                       fontFamily: "Orbitron_700Bold",
-                      color: "#FFF",
-                      fontSize: 20,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
+                      alignSelf: "center",
+                      my: 2,
                     }}
+                    onClick={() => handleHarvest()}
+                    variant="contained"
                   >
-                    51.25%
-                  </Typography>
-
-                  <Typography
+                    Harvest
+                  </ColorButton>
+                )} 
+                { props.ethAddress === ""? null : (
+                  <ColorButton
                     sx={{
-                      mx:2,
+                      color: "#fff",
                       fontFamily: "Orbitron_700Bold",
-                      color: "#c2c2c2",
-                      fontSize: 15,
-                      letterSpacing: 1,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
+                      alignSelf: "center",
+                      my: 2,
                     }}
+                    onClick={() => handlePending()}
+                    variant="contained"
                   >
-                    APR
-                  </Typography>
+                    UPDATE REWARDS
+                  </ColorButton>
+                )}
+               
                 </Stack>
-                <Stack
-                  sx={{
-                    justifyContent: "center",
-                    maxWidth: 150,
-                    height: "131px",
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      mx:2,
-                      fontFamily: "Orbitron_700Bold",
-                      color: "#c2c2c2",
-                      fontSize: 20,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    ?
-                  </Typography>
-
-                  <Typography
-                    sx={{
-                      mx:2,
-                      fontFamily: "Orbitron_700Bold",
-                      color: "#c2c2c2",
-                      fontSize: 15,
-                      letterSpacing: 1,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    Wallet
-                  </Typography>
-                </Stack>
+                
               </Stack>
 
-              <Stack sx={{ mx:2, justifyContent: "space-between"}}>
+          {/*     <Stack sx={{ mx:2, justifyContent: "space-between"}}>
                 <Stack
                   sx={{
                     justifyContent: "center",
@@ -1246,8 +1459,8 @@ export default function Home(props: any) {
                   >
                     TVL
                   </Typography>
-                </Stack>
-                <Stack
+                </Stack> */}
+             {/*    <Stack
                   sx={{
                     justifyContent: "center",
                     maxWidth: 150,
@@ -1289,10 +1502,9 @@ export default function Home(props: any) {
                   >
                     Deposit
                   </Typography>
-                </Stack>
-              </Stack>
+                </Stack> */}{/* 
+              </Stack> */}
 
-              <Stack sx={{ mx:2, justifyContent: "space-between"}}>
                 <Stack
                   sx={{
                     justifyContent: "center",
@@ -1313,8 +1525,9 @@ export default function Home(props: any) {
                       whiteSpace: "nowrap",
                       textOverflow: "ellipsis",
                     }}
-                  >
-                    $8.06k
+                    >
+                    
+                  {pending}
                   </Typography>
 
                   <Typography
@@ -1333,234 +1546,16 @@ export default function Home(props: any) {
                       textOverflow: "ellipsis",
                     }}
                   >
-                    Daily Rewards
+                     Rewards
                   </Typography>
                 </Stack>
-                <Stack
-                  sx={{
-                    justifyContent: "center",
-                    maxWidth: 170,
-                    height: "131px",
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      mx:2,
-                      fontFamily: "Orbitron_700Bold",
-                      color: "#c2c2c2",
-                      fontSize: 20,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    ?
-                  </Typography>
-
-                  <Typography
-                    sx={{
-                      mx:2,
-                      fontFamily: "Orbitron_700Bold",
-                      color: "#c2c2c2",
-                      fontSize: 15,
-                      letterSpacing: 1,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    Earned
-                  </Typography>
-                </Stack>
-              </Stack>
+             
 
             </Stack>
           </Grid>
         </Grid>:null}
 
-        {false ? (
-          <Grid
-            my={3}
-            direction="row"
-            container
-            justifyContent="center"
-            alignItems="flex-start"
-            sx={{
-              boxShadow: "0px 0px 8px 1px rgba(0,0,0,0.2)",
-              borderRadius: 6,
-            }}
-          >
-            <Grid
-              sx={{
-                my: 2,
-              }}
-              item
-              xs={4}
-              sm={4}
-              md={4}
-              lg={4}
-            >
-              <Stack sx={{ mx: 2 }}>
-                <Stack sx={{ mt: 2, mb: 2 }}>
-                  <Typography
-                    sx={{
-                      fontFamily: "Orbitron_900Black",
-                      color: "#FFF",
-                      textAlign: "center",
-                      fontSize: 45,
-                    }}
-                  >
-                    Stake your Ultimate Tokens Now!
-                  </Typography>
-                </Stack>
-                
-                <Stack sx={{ mt: 2, mb: 2 }}>
-                  <Typography
-                    sx={{
-                      fontFamily: "Orbitron_900Black",
-                      color: "#FFF",
-                      textAlign: "center",
-                      fontSize: 18,
-                    }}
-                  >
-                    Earn ULTI
-                  </Typography>
-                </Stack>
-
-                <Stack sx={{ mt: 2, mb: 2 }}>
-                  <CardMedia
-                    component="img"
-                    image={Logo2}
-                    alt="Logo"
-                    sx={{
-                      width: "100px",
-                      height: "100px",
-                      alignSelf: "center",
-                      objectFit: "contain",
-                      cursor: "pointer",
-                    }}
-                  />
-                </Stack>
-              </Stack>
-            </Grid>
-
-            <Grid
-              sx={{
-                my: 2,
-              }}
-              item
-              xs={6}
-              sm={6}
-              md={6}
-              lg={6}
-            >
-              <Stack sx={{ mx: 2 }}>
-                <Stack sx={{ mt: 2, mb: 2 }}>
-                  <Typography
-                    sx={{
-                      fontFamily: "Orbitron_900Black",
-                      color: "#FFF",
-                      textAlign: "center",
-                      fontSize: 45,
-                    }}
-                  >
-                    Token Info
-                  </Typography>
-                </Stack>
-              </Stack>
-              <Stack
-                sx={{
-                  width: "100%",
-                  height: "100%",
-                  borderRadius: "5px",
-                  alignSelf: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <FormControl
-                  fullWidth
-                  sx={{ width: 300, alignSelf: "center", my: 2 }}
-                  variant="standard"
-                >
-                  <Typography
-                    sx={{
-                      fontFamily: "Orbitron_700Bold",
-                      color: "#FFF",
-                      mt: 2,
-                      fontSize: 18,
-                      textAlign: "center",
-                      mb: 3,
-                    }}
-                  >
-                    Buy Now:
-                  </Typography>
-
-                  <Input
-                    className={classes.customSelect}
-                    sx={{
-                      mt: -2,
-                      input: {
-                        height: 47,
-                        color: "#FFF",
-                        fontFamily: "Orbitron_700Bold",
-                        fontSize: 14,
-                      },
-                    }}
-                    id="standard-adornment-amount"
-                    value={values.amount}
-                    onChange={handleChanges("amount")}
-                    type={"number"}
-                    placeholder="Enter amount of tokens"
-                    inputProps={{
-                      inputMode: "numeric",
-                      pattern: "[0-9]*",
-                      maxLength: 12,
-                    }}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <CardMedia
-                          component="img"
-                          image={Logo2}
-                          alt="Logo"
-                          sx={{
-                            width: "25px",
-                            height: "25px",
-                            alignSelf: "center",
-                            objectFit: "contain",
-                            cursor: "pointer",
-                          }}
-                        />
-                        <Typography
-                          sx={{
-                            fontFamily: "Orbitron_700Bold",
-                            color: "#FFF",
-                            fontSize: 12,
-                          }}
-                        >
-                          {"ULTI"}
-                        </Typography>
-                      </InputAdornment>
-                    }
-                  />
-                </FormControl>
-
-                <ColorButton
-                  sx={{ color: "#fff", alignSelf: "center", my: 2 }}
-                  onClick={() => handleBuy(props.ethAddress)}
-                  variant="contained"
-                >
-                  Buy TOKENS
-                </ColorButton>
-              </Stack>
-            </Grid>
-          </Grid>
-        ) : null}
+        
 
         {false ? (
           <Grid
