@@ -633,7 +633,7 @@ setPending(Moralis.Units.FromWei(res2))
         abi: abi.masterUlti,
         awaitReceipt: true, // should be switched to false
         params: {
-          _rewardPerSecond: values.amount,
+          _rewardPerSecond: "100000000000000",
         },
       };
 
