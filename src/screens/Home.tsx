@@ -39,6 +39,8 @@ const useStyles = makeStyles({
   },
 });
 
+
+const Web3 = require("web3");
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
   color: theme.palette.getContrastText("#637bfe"),
   backgroundColor: "#637bfe",
@@ -212,6 +214,7 @@ export default function Home(props: any) {
 
   const classes = useStyles();
   const [pending, setPending] = React.useState(0);
+  const [deposit, setDeposit] = React.useState("0");
   const [holders, setHolders] = React.useState(0);
   const [circulating, setCirculating] = React.useState(0);
   const [totalSupply, setTotalSupply] = React.useState(0);
@@ -224,8 +227,21 @@ export default function Home(props: any) {
   React.useEffect(() => {
     async function init() {
       await enableWeb3();
-      handlegetDeposit()
       if (isWeb3Enabled) {
+        
+      
+      const web3 =await new Web3(Moralis.provider);
+      console.log(user.get("ethAddress"))
+   
+            const contract = await new web3.eth.Contract(abi.masterUlti,"0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C")
+    
+            const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: user.get("ethAddress") })
+            const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: user.get("ethAddress") })
+             
+            setPending(Moralis.Units.FromWei(pending)) 
+            
+  setDeposit(Moralis.Units.FromWei(depo.amount)) 
+
         const options3 = {
           contractAddress: "0x301d135E85FA8C8839Ba738eA4Cc9868Cab520Bd",
           functionName: "balanceOf",
@@ -468,6 +484,19 @@ export default function Home(props: any) {
       let res2 = await Moralis.executeFunction(sendOptions1);
       let espera1 = await res2.wait(2);
       console.log(JSON.stringify(espera1));
+      
+      const web3 =await new Web3(Moralis.provider);
+      console.log(user.get("ethAddress"))
+   
+            const contract = await new web3.eth.Contract(abi.masterUlti,"0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C")
+    
+            const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: user.get("ethAddress") })
+       
+            const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: user.get("ethAddress") })
+             
+            setPending(Moralis.Units.FromWei(pending)) 
+  setDeposit(Moralis.Units.FromWei(depo.amount)) 
+
       setLoading(false);
       return;
     } catch {
@@ -634,6 +663,18 @@ setPending(Moralis.Units.FromWei(res2))
       let res2 = await Moralis.executeFunction(sendOptions1);
       let espera1 = await res2.wait(2);
       console.log(JSON.stringify(espera1));
+      
+      const web3 =await new Web3(Moralis.provider);
+      console.log(user.get("ethAddress"))
+   
+            const contract = await new web3.eth.Contract(abi.masterUlti,"0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C")
+    
+            const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: user.get("ethAddress") })
+            const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: user.get("ethAddress") })
+             
+            setPending(Moralis.Units.FromWei(pending))   
+            
+  setDeposit(Moralis.Units.FromWei(depo.amount)) 
       setLoading(false);
       return;
     } catch {
@@ -706,8 +747,9 @@ setPending(Moralis.Units.FromWei(res2))
                 alignSelf: "center",
                 fontSize: 35,
               }}
-            >
-              ULTIMATE DAO
+            >        
+                 COMMUNITY-DRIVEN MULTI BLOCKCHAIN ECOSYSTEM ACCELERATOR
+
             </Typography>
 
             <Stack
@@ -726,15 +768,8 @@ setPending(Moralis.Units.FromWei(res2))
                   fontSize: 16,
                 }}
               >
-                Our mission is that “the crypto community” can propose and
-                decide what types of DAO projects to promote for the good of the
-                community, and in this way the DAO ecosystem grows organically.
-                Our DAO project is a decentralized blockchain agency, where the
-                holders of the governance token can propose DAO projects and the
-                community can decide by vote what project they realize. The
-                first investors of the project will have priority over the
-                incomming inverstors, this is your opportinity to be part of
-                Ultimate DAO to get the best benefits and rewards.
+                             ULTIMATE Finance is a Value-oriented, sustainable and decentralized hybrid yield optimizer (AMM and yield aggregator).
+
               </Typography>
             </Stack>
           </Grid>
@@ -763,7 +798,7 @@ setPending(Moralis.Units.FromWei(res2))
             lg={4}
           >
             <Stack sx={{ mx: 2 }}>
-              <Stack sx={{ mt: 2, mb: 2 }}>
+              {/* <Stack sx={{ mt: 2, mb: 2 }}>
                 <Typography
                   sx={{
                     fontFamily: "Orbitron_900Black",
@@ -797,8 +832,29 @@ setPending(Moralis.Units.FromWei(res2))
                   OR BUY NOW TOKEN PRESALE LIVE!
                 </Typography>
               </Stack>
-
+ */}
               <Stack sx={{ mt: 2, mb: 2 }}>
+              <Typography
+                  sx={{
+                    fontFamily: "Orbitron_900Black",
+                    color: "#FFF",
+                    textAlign: "center",
+                    fontSize: 36,
+                    marginBottom: 5,
+                  }}
+                >
+                  TOKEN PRE-SALE <Typography
+                  sx={{
+                    fontFamily: "Orbitron_900Black",
+                    color: "yellow",
+                    textAlign: "center",
+                    fontSize: 36,
+                    marginBottom: 2,
+                  }}
+                > LIVE!
+                </Typography>
+                
+                </Typography>
                 <Typography
                   sx={{
                     fontFamily: "Orbitron_900Black",
@@ -811,7 +867,7 @@ setPending(Moralis.Units.FromWei(res2))
                   <Typography
                     sx={{
                       fontFamily: "Orbitron_900Black",
-                      color: "green",
+                      color: "yellow",
                       textAlign: "center",
                       fontSize: 24,
                     }}
@@ -821,29 +877,7 @@ setPending(Moralis.Units.FromWei(res2))
                 </Typography>
               </Stack>
 
-              <Stack sx={{ mt: 2, mb: 2 }}>
-                <Typography
-                  sx={{
-                    fontFamily: "Orbitron_900Black",
-                    color: "#FFF",
-                    textAlign: "center",
-                    fontSize: 24,
-                  }}
-                >
-                  Token pre sale amount{" "}
-                  <Typography
-                    sx={{
-                      fontFamily: "Orbitron_900Black",
-                      color: "green",
-                      textAlign: "center",
-                      fontSize: 18,
-                    }}
-                  >
-                    40,000,000 ultimates
-                  </Typography>
-                </Typography>
-              </Stack>
-
+            
               <Stack
                 sx={{
                   width: "100%",
@@ -1049,9 +1083,9 @@ setPending(Moralis.Units.FromWei(res2))
                     mx:2,
                     fontFamily: "Orbitron_700Bold",
                     color: "#FFF",
-                    fontSize: 16,
                     overflowWrap: "break-word",
                     hyphens: "auto",
+                    fontSize: 16,
                     textJustify: "inter-character",
                     overflow: "hidden",
                     whiteSpace: "nowrap",
@@ -1188,6 +1222,7 @@ setPending(Moralis.Units.FromWei(res2))
           </Grid>
         </Grid>
 {true?
+        
         <Grid
           my={3}
           direction="row"
@@ -1207,12 +1242,15 @@ setPending(Moralis.Units.FromWei(res2))
             md={4}
             lg={4}
           >
+            
+
             <Stack spacing={1} sx={{mx: 4, alignItems:'center', flexDirection: "row" }}>
 
 
               <Stack
                 sx={{
                   width: "100%",
+                  paddingBottom:10,
                   height: "100%",
                   borderRadius: "5px",
                   alignSelf: "center",
@@ -1230,13 +1268,15 @@ setPending(Moralis.Units.FromWei(res2))
                   justifyContent: "center",
                   alignItems:"center",
                   maxWidth: {xs:130, sm:200, md:300, lg:522, xl:522},
+                  
+                  paddingTop:10,
                 }}
               >
                 
               <Avatar
                 alt="Remy Sharp"
                 src={Logo2}
-                sx={{ width: 46, height: 46 }}
+                sx={{ width: 46, height: 46,marginBottom:2 }}
               />
               <Typography
                     sx={{
@@ -1244,46 +1284,13 @@ setPending(Moralis.Units.FromWei(res2))
                       color: "#FFF",
                       textAlign: "center",
                       fontSize: 24,
+                      marginBottom:5,
                     }}
                   >
-                    Stake Your Tokens Now!
+                    Stake Your ULTI Tokens 
                   </Typography>
-                <Typography
-                  sx={{
-                    mx:2,
-                    fontFamily: "Orbitron_700Bold",
-                    color: "#c2c2c2",
-                    fontSize: 15,
-                    overflowWrap: "break-word",
-                    hyphens: "auto",
-                    textJustify: "inter-character",
-                    overflow: "hidden",
-                    whiteSpace: "nowrap",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  Earn Ulti
-                </Typography>
+            
 
-                <Typography
-                  sx={{
-                    mx:2,
-                    fontFamily: "Orbitron_700Bold",
-                    color: "#FFF",
-                    fontSize: 20,
-                    marginTop:2,
-                    marginBottom:2,
-                    letterSpacing: 1,
-                    overflowWrap: "break-word",
-                    hyphens: "auto",
-                    textJustify: "inter-character",
-                    overflow: "hidden",
-                    whiteSpace: "nowrap",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  ULTI-MATIC LP
-                </Typography>
               </Stack>
               
 
@@ -1369,14 +1376,34 @@ setPending(Moralis.Units.FromWei(res2))
             
           </Grid>
           
+        
           <Grid
             item
             xs={12}
             sm={12}
-            md={6}
-            lg={6}
+            md={4}
+            lg={4}
           >
+            
 
+            <Typography
+                    sx={{
+                      wordBreak: 'break-all',
+                      mx:2,
+                      fontFamily: "Orbitron_700Bold",
+                      color: "#c2c2c2",
+                      fontSize: 15,
+                      letterSpacing: 1,
+                      overflowWrap: "break-word",
+                      hyphens: "auto",
+                      textJustify: "inter-character",
+                      overflow: "hidden",
+                      whiteSpace: "nowrap",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                     Stake info
+                  </Typography>
             <Stack 
               spacing={1} 
               sx={{
@@ -1391,13 +1418,7 @@ setPending(Moralis.Units.FromWei(res2))
               }}
             >
               <Stack sx={{ mx:2, justifyContent: "center"}}>
-                <Stack
-                  sx={{
-                    justifyContent: "center",
-                    maxWidth: 150,
-                    height: "131px",
-                  }}
-                >
+             
                   
           { props.ethAddress === ""? null : (
                   <ColorButton
@@ -1427,8 +1448,6 @@ setPending(Moralis.Units.FromWei(res2))
                     UPDATE REWARDS
                   </ColorButton>
                 )}
-               
-                </Stack>
                 
               </Stack>
 
@@ -1564,7 +1583,50 @@ setPending(Moralis.Units.FromWei(res2))
                      Rewards
                   </Typography>
                 </Stack>
-             
+                <Stack
+                  sx={{
+                    justifyContent: "center",
+                    maxWidth: {xs:130, sm:130, md:130, lg:170, xl:170},
+                    height: 131,
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      mx:2,
+                      fontFamily: "Orbitron_700Bold",
+                      color: "#FFF",
+                      fontSize: 20,
+                      overflowWrap: "break-word",
+                      hyphens: "auto",
+                      textJustify: "inter-character",
+                      overflow: "hidden",
+                      whiteSpace: "nowrap",
+                      textOverflow: "ellipsis",
+                    }}
+                    >
+                    
+                  {deposit}
+                  </Typography>
+
+                  <Typography
+                    sx={{
+                      wordBreak: 'break-all',
+                      mx:2,
+                      fontFamily: "Orbitron_700Bold",
+                      color: "#c2c2c2",
+                      fontSize: 15,
+                      letterSpacing: 1,
+                      overflowWrap: "break-word",
+                      hyphens: "auto",
+                      textJustify: "inter-character",
+                      overflow: "hidden",
+                      whiteSpace: "nowrap",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                     Deposit
+                  </Typography>
+                </Stack>
 
             </Stack>
           </Grid>
