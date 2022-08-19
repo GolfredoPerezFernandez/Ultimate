@@ -799,7 +799,7 @@ setPending(Moralis.Units.FromWei(res2))
                   fontSize: 16,
                 }}
               >
-                             ULTIMATE Finance is a Value-oriented, sustainable and decentralized hybrid yield optimizer (AMM and yield aggregator).
+                             ULTIMATE DAO is a Value-oriented, sustainable and decentralized hybrid yield optimizer driven by community (AMM and yield aggregator).
 
               </Typography>
             </Stack>
