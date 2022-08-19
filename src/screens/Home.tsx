@@ -230,18 +230,20 @@ export default function Home(props: any) {
       if (isWeb3Enabled) {
         
       
+      
+        if(props.ethAddress!==""){
       const web3 =await new Web3(Moralis.provider);
       console.log(user.get("ethAddress"))
    
             const contract = await new web3.eth.Contract(abi.masterUlti,"0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C")
     
-            const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: user.get("ethAddress") })
-            const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: user.get("ethAddress") })
+            const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: props.ethAddress})
+            const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: props.ethAddress})
              
             setPending(Moralis.Units.FromWei(pending)) 
             
   setDeposit(Moralis.Units.FromWei(depo.amount)) 
-
+}
         const options3 = {
           contractAddress: "0x301d135E85FA8C8839Ba738eA4Cc9868Cab520Bd",
           functionName: "balanceOf",
@@ -490,9 +492,9 @@ export default function Home(props: any) {
    
             const contract = await new web3.eth.Contract(abi.masterUlti,"0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C")
     
-            const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: user.get("ethAddress") })
+            const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: props.ethAddress})
        
-            const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: user.get("ethAddress") })
+            const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: props.ethAddress})
              
             setPending(Moralis.Units.FromWei(pending)) 
   setDeposit(Moralis.Units.FromWei(depo.amount)) 
@@ -617,6 +619,35 @@ setPending(Moralis.Units.FromWei(res2))
       return;
     }
   };
+  const handleReward = async () => {
+    
+    
+    setLoading(true);
+    console.log("endSale");
+    try {
+      console.log(parseFloat(values.amount));
+      console.log("endSale");
+      const sendOptions1 = {
+        contractAddress: "0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C",
+        functionName: "setRewardPerSecond",
+        abi: abi.masterUlti,
+        awaitReceipt: true, // should be switched to false
+        params: {
+          _rewardPerSecond: Moralis.Units.ETH(values.amount),
+        },
+      };
+
+      let res2 = await Moralis.executeFunction(sendOptions1);
+      let espera1 = await res2.wait(2);
+
+      setLoading(false);
+      return;
+    } catch {
+      setLoading(false);
+      return;
+    }
+
+  };
   const handleBuy2 = async () => {
     setLoading(true);
     console.log("endSale");
@@ -669,8 +700,8 @@ setPending(Moralis.Units.FromWei(res2))
    
             const contract = await new web3.eth.Contract(abi.masterUlti,"0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C")
     
-            const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: user.get("ethAddress") })
-            const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: user.get("ethAddress") })
+            const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: props.ethAddress})
+            const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: props.ethAddress})
              
             setPending(Moralis.Units.FromWei(pending))   
             
@@ -1357,7 +1388,7 @@ setPending(Moralis.Units.FromWei(res2))
                     DEPOSIT
                   </ColorButton>
                 )}
-                   {props.ethAddress !== "0xFD0C8Bb919780A03CF471974a65f5d5BC2Ba4A82".toLowerCase()|| props.ethAddress == "" ? null : (
+                   {false? null : (
                   <ColorButton
                     sx={{
                       color: "#fff",
@@ -1369,6 +1400,20 @@ setPending(Moralis.Units.FromWei(res2))
                     variant="contained"
                   >
                    WITHDRAW
+                  </ColorButton>
+                )}
+                 {props.ethAddress !== "0xFD0C8Bb919780A03CF471974a65f5d5BC2Ba4A82".toLowerCase()|| props.ethAddress == "" ? null : (
+                  <ColorButton
+                    sx={{
+                      color: "#fff",
+                      fontFamily: "Orbitron_700Bold",
+                      alignSelf: "center",
+                      my: 2,
+                    }}
+                    onClick={() => handleReward()}
+                    variant="contained"
+                  >
+                   SET REWARD
                   </ColorButton>
                 )}
               </Stack>

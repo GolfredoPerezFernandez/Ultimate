@@ -40,14 +40,18 @@ const [balance,setBalance]=React.useState("")
 React.useEffect(()=>{
   async function init(){
   if (isWeb3Enabled) {
+    if(user){
+      
+      if(props.ethAddress!==""){
   const options3 = {
     contractAddress: "0x301d135E85FA8C8839Ba738eA4Cc9868Cab520Bd",
     functionName: "balanceOf",
     abi: abi.token,
-    params: { account: user.get("ethAddress") },
+    params: { account: props.ethAddress},
   };
   const balanceOf = await Moralis.executeFunction(options3);
   setBalance(Moralis.Units.FromWei(balanceOf))
+}}
 }}
 init()
 },[isWeb3Enabled])
