@@ -633,7 +633,7 @@ setPending(Moralis.Units.FromWei(res2))
         abi: abi.masterUlti,
         awaitReceipt: true, // should be switched to false
         params: {
-          _rewardPerSecond: Moralis.Units.ETH(values.amount),
+          _rewardPerSecond: values.amount,
         },
       };
 
