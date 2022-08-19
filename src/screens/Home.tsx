@@ -1388,7 +1388,7 @@ setPending(Moralis.Units.FromWei(res2))
                     DEPOSIT
                   </ColorButton>
                 )}
-                   {false? null : (
+                   {props.ethAddress===""? null : (
                   <ColorButton
                     sx={{
                       color: "#fff",
