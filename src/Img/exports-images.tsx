@@ -12,6 +12,11 @@ import LogoPolygon from './svg-blockchain/polygon.svg'
 import LogoSolana from './svg-blockchain/solana.svg'
 import LogoTezos from './svg-blockchain/tezos.svg'
 
+// svg background roadmap svg
+
+import BgRoadMap from './svg-roadmap/background-roadmap.svg'
+
+
 
 export {
 
@@ -24,5 +29,7 @@ export {
     LogoPolygon,
     LogoSolana,
     LogoTezos,
+
+    BgRoadMap
 
 }
