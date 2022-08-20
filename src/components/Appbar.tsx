@@ -57,9 +57,15 @@ React.useEffect(()=>{
 }}
 init()
 },[isWeb3Enabled])
-return ( 
-    
-<AppBar 
+
+
+
+function GotoBenefits() {navigate("/benefits")}
+function GotoRoadMap() {navigate("/road-map")}
+function GotoAboutUs() {navigate("/about-us")}
+function GotoWhitepaper() {navigate("/whitepaper")}
+
+return ( <AppBar 
 position="sticky" 
 sx={{
   // background:'#16151A',
@@ -88,13 +94,36 @@ sx={{
         cursor: 'pointer',
       }}
     />
-
-    <Box>
+    <Typography
+      sx={{fontFamily: "Orbitron_700Bold", fontSize:14,color: "#fff", alignSelf: "center",  }}
+      onClick={()=>navigate("/")}  
+    >
+      HOME
+    </Typography>
+    <Typography
+         sx={{fontFamily: "Orbitron_700Bold", fontSize:14,color: "#fff", alignSelf: "center",  }}
+         onClick={()=>GotoBenefits()}  
+       >
+         BENEFITS
+       </Typography>
+    <Box>  
       <DropDownBlockchains
         display={{ xs: 'none', sm: 'none', md: 'block' }}
-      />
+      />   
     </Box>
 
+    <Typography
+      sx={{fontFamily: "Orbitron_700Bold", fontSize:14,color: "#fff", alignSelf: "center",  }}
+      onClick={()=>GotoRoadMap()}  
+    >
+      ROAD MAP
+    </Typography>
+    <Typography
+      sx={{fontFamily: "Orbitron_700Bold", fontSize:14,color: "#fff", alignSelf: "center",  }}
+      onClick={()=>GotoWhitepaper()}  
+    >
+      WHITEPAPER
+    </Typography>
     <Stack direction='row' spacing={{xs:0,sm:1,md:2,lg:2, xl:2}} sx={{width:120,justifyContent:'center', alignItems:'center'}}>
    
     <Box sx={{ display:  {xs:'block', sm:'block', md:'block', lg:'block', xl:'block'}}}>
@@ -117,11 +146,6 @@ sx={{
 
       
     </Box>
-{/* 
-      <Box sx={{ display:  {xs:'block', sm:'block', md:'block', lg:'block', xl:'block'}}}>
-        <DrawerMenu/>
-      </Box>
- */}
     </Stack>
 
   </Stack>

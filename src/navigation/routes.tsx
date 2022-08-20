@@ -12,8 +12,10 @@ import {ImageBackground, mageBackground } from "react-native";
 const Home = React.lazy(() => import('@screens/Home'));
 const Footer = React.lazy(() => import('@screens/Footer'));
 
+const Benefits = React.lazy(() => import('@screens/Benefits'));
 const AboutUs = React.lazy(() => import('@screens/AboutUs'));
 const RoadMap = React.lazy(() => import('@screens/RoadMap'));
+const Whitepaper = React.lazy(() => import('@screens/Whitepaper'));
 
 
 let Background = require("../../assets/background.png");
@@ -92,13 +94,15 @@ init()
           style={{flex:1,alignSelf:'stretch'}}
           source={Background}
         >    
-          {/* <ParticlesBg type="cobweb" color="#fff" bg={true} /> */}
+        <ParticlesBg type="cobweb" color="#fff" bg={true} /> 
 
         <Appbar setEthAddress={setEthAddress} ethAddress={ethAddress} />
         <Routes>
           <Route path="/" element={<Home ethAddress={ethAddress} />}/>
+          <Route path="/whitepaper" element={<Whitepaper/>}/>
           <Route path="/road-map" element={<RoadMap/>}/>
           <Route path="/about-us" element={<AboutUs/>}/>
+          <Route path="/benefits" element={<Benefits/>}/>
         </Routes>
         <Footer />
         </ImageBackground>

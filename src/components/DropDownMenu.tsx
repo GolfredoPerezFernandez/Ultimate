@@ -72,7 +72,7 @@ export const DropdownMenuDemo = (props: any) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+ 
   return (
     <Box className={styles.card}>          
 
@@ -150,7 +150,7 @@ export const DropdownMenuDemo = (props: any) => {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
-            <Box sx={{alignSelf:'center'}}>
+            <Box sx={{alignSelf:'center',width:"200px"}}>
             <Typography 
               sx={{
                 fontFamily: "Orbitron_900Black",
@@ -174,36 +174,6 @@ export const DropdownMenuDemo = (props: any) => {
             </MenuItem> 
 
             <Divider />
-            
-            <MenuItem onClick={GotoHome}>
-              <ListItemIcon>
-                <Logout fontSize="small" />
-              </ListItemIcon>
-              Home
-            </MenuItem> 
-            <MenuItem onClick={GotoRoadMap}>
-              <ListItemIcon>
-                <Logout fontSize="small" />
-              </ListItemIcon>
-              RoadMap
-            </MenuItem> 
-            
-            <MenuItem onClick={GotoAboutUs}>
-              <ListItemIcon>
-                <Logout fontSize="small" />
-              </ListItemIcon>
-              About Us
-            </MenuItem> 
-
-            <Divider />
-
-          
-            <MenuItem onClick={()=>logOut()}>
-              <ListItemIcon>
-                <Logout fontSize="small" />
-              </ListItemIcon>
-              Logout
-            </MenuItem> 
           </Menu>
 
     </Box>
