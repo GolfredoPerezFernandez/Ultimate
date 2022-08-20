@@ -259,7 +259,7 @@ const AboutUS = () => {
                             <Typography sx={{ fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
                             • Nombre: lui lui lui<br/>
                             • Función en el proyecto (ocupación): INVERSIONISTA<br/>
-                            • Red social (Twitter): El wero (FSANCHEZQUIRARTE)<br/>
+                            • Red social (Twitter): El wero <br/>
                             • Foto:<br/>
                             • Experiencia Laboral (Background): EMPRESARIO.<br/>
                             
@@ -273,7 +273,7 @@ const AboutUS = () => {
                         sx={{mr: {xs:1, sm:2 , md:5, lg:5 , xl:5}, alignSelf:'center'}}>
                 
                             <Typography sx={{ fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
-                            • Nombre: German Palma<br/>
+                            • Nombre: lui lui<br/>
                             • Función en el proyecto (ocupación):<br/>
                             • Red social (Twitter): <a target="_blank" href="https://twitter.com/lui">lui</a><br/>
                             • Foto:<br/>
