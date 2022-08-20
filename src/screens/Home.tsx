@@ -1474,7 +1474,7 @@ setPending(Moralis.Units.FromWei(res2))
                   border: "1px solid rgba(117, 117, 117, 0.1)",
                 }}
               >
-                <Stack direction={{ xs:'colum', sm:'colum', md:'row', lg:'row', xl:'row'}} sx={{mt:1}}>
+                <Stack direction={{ xs:'colum', sm:'row', md:'row', lg:'row', xl:'row'}} sx={{mt:2}}>
                   <Stack
                     sx={{
                       justifyContent: "center",
@@ -1567,7 +1567,7 @@ setPending(Moralis.Units.FromWei(res2))
                   </Stack>
                 </Stack>
                 
-                <Stack direction={{ xs:'colum', sm:'colum', md:'row', lg:'row', xl:'row'}}  spacing={2} sx={{ mx:2, mb:2, justifyContent: "center"}}>
+                <Stack direction={{ xs:'colum', sm:'row', md:'row', lg:'row', xl:'row'}}  spacing={2} sx={{ mx:2, mb:2, justifyContent: "center"}}>
               
                     
                   { props.ethAddress === ""? null : (
