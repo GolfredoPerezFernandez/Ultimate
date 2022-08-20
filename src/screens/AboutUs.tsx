@@ -220,9 +220,9 @@ const AboutUS = () => {
                     <Stack sx={{mb:2, mr: {xs:1, sm:2 , md:3, lg:5 , xl:5}, alignSelf:'center'}}>
             
                         <Typography sx={{mt:5, fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
-                        • Nombre: Sergio Girard<br/>
+                        • Nombre: lui lui<br/>
                         • Función en el proyecto (ocupación): Co Founder.<br/>
-                        • Red social (Twitter): @Sergio_G_M<br/>
+                        • Red social (Twitter): @lui<br/>
                         • Foto:<br/>
                         • Experiencia Laboral (Background): Empresario.<br/>
                         </Typography >
@@ -257,7 +257,7 @@ const AboutUS = () => {
                         sx={{mr: {xs:1, sm:2 , md:5, lg:5 , xl:5}, alignSelf:'center'}}>
 
                             <Typography sx={{ fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
-                            • Nombre: FELIX SANCHEZ QUIRARTE<br/>
+                            • Nombre: lui lui lui<br/>
                             • Función en el proyecto (ocupación): INVERSIONISTA<br/>
                             • Red social (Twitter): El wero (FSANCHEZQUIRARTE)<br/>
                             • Foto:<br/>
@@ -275,7 +275,7 @@ const AboutUS = () => {
                             <Typography sx={{ fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
                             • Nombre: German Palma<br/>
                             • Función en el proyecto (ocupación):<br/>
-                            • Red social (Twitter): <a target="_blank" href="https://twitter.com/Web3German">Web3German</a><br/>
+                            • Red social (Twitter): <a target="_blank" href="https://twitter.com/lui">lui</a><br/>
                             • Foto:<br/>
                             • Experiencia Laboral (Background):<br/>
                             - Experience in sales with digital marketing<br/>
@@ -305,9 +305,9 @@ const AboutUS = () => {
                     >
 
                         <Typography sx={{ fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
-                        • Luis Gatica.<br/>
+                        • Luis lui.<br/>
                         • Legal advisor web3<br/>
-                        • Su twitter: @LuisKikeGatica<br/>
+                        • Su twitter: @lui<br/>
                         • abg. y notario especializado en temas de Web3<br/>
                         
                         </Typography >
