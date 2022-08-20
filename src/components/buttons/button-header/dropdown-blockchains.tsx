@@ -7,6 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { useNavigate } from 'react-router-dom';
 
+const avalanche=require('../../../../assets/avalanche.png');
 
 import {
   LogoAlgorand, 
@@ -35,18 +36,23 @@ const Blockchains = (props: any) => {
  
   let navigate = useNavigate();
   const classSelect = dropdownStyles();
+  useEffect(()=>{
+    async function init(){
+      setBlockchain("Polygon")
+    }
 
-  function GoToHome() {navigate("/")}
-  function GoToAlgorand() {navigate("/algorand")}
-  function GoToCardano() {navigate("/cardano")}
-  function GoToCrono() {navigate("/crono")}
-  function GoToBinance() {navigate("/binance")}
-  function GoToEthereum() {navigate("/ethereum")}
-  function GoToPolygon() {navigate("/polygon")}
-  function GoToSolana() {navigate("/solana")}
-  function GoToTezos() {navigate("/tezos")}
+    init()
+  },[])
 
-  const [blockchain, setBlockchain] = React.useState('Home');
+  function GoToHome() {}
+  function GoToCrono() {}
+  function GoToBinance() {}
+  function GoToEthereum() {}
+  function GoToPolygon() {}
+  function GoToSolana() {}
+  function GoToTezos() {}
+
+  const [blockchain, setBlockchain] = React.useState('Polygon');
   console.log('blockchain', blockchain)
 
   const handleChange = (event: any) => {
@@ -73,46 +79,20 @@ const Blockchains = (props: any) => {
           defaultValue='Home'
         >
 
-          <MenuItem
-            value={'Home'}
-            onClick={GoToHome}
-            sx={{ 
-              fontFamily:"Orbitron_600SemiBold",
-              alignText:"center"              
-            }}
-          >
-            <ListItemIcon>
-              <img src={LogoBlockchain} height={15} width={15} style={{ objectFit:'contain'}}/>
-            </ListItemIcon>
-            All Blockchains
-          </MenuItem> 
 
           <MenuItem
-            value={'Algorand'}
-            onClick={GoToAlgorand}
+            value={'Crono'}
+            onClick={GoToCrono}
             sx={{ 
               fontFamily:"Orbitron_600SemiBold",
             }}
           >
             <ListItemIcon>
-              <img src={LogoAlgorand} height={15} width={15} style={{ objectFit:'cover'}}/>
+              <img src={avalanche} height={15} width={15} style={{ objectFit:'cover'}}/>
             </ListItemIcon>
-            Algorand 
+            Avalanche 
           </MenuItem> 
 
-          <MenuItem
-            value={'Cardano'}
-            onClick={GoToCardano}
-            sx={{ 
-              fontFamily:"Orbitron_600SemiBold",
-              // color:"#000",
-            }}
-          >
-            <ListItemIcon>
-              <img src={LogoCardano} height={15} width={15} style={{ objectFit:'contain'}}/>
-            </ListItemIcon>
-            Cardano 
-          </MenuItem> 
 
           <MenuItem
             value={'Crono'}
@@ -125,9 +105,9 @@ const Blockchains = (props: any) => {
             <ListItemIcon>
               <img src={LogoCrono} height={15} width={15} style={{ objectFit:'contain'}}/>
             </ListItemIcon>
-            Crono 
+            Cronos
           </MenuItem> 
-
+{/* 
           <MenuItem
             value={'BinanceSmartChain'}
             onClick={GoToBinance}
@@ -137,7 +117,7 @@ const Blockchains = (props: any) => {
             }}
           >
             <ListItemIcon>
-              <img src={LogoBinance} height={15} width={15} style={{ objectFit:'contain'}}/>
+              <img src={LogoBinance} height={20} width={20} style={{ objectFit:'contain'}}/>
             </ListItemIcon>
             Binance Smart Chain 
           </MenuItem> 
@@ -155,7 +135,7 @@ const Blockchains = (props: any) => {
             </ListItemIcon>
             Ethereum 
           </MenuItem> 
-
+ */}
           <MenuItem
             value={'Polygon'}
             onClick={GoToPolygon}
@@ -169,34 +149,7 @@ const Blockchains = (props: any) => {
             </ListItemIcon>
             Polygon 
           </MenuItem>  
-
-          <MenuItem
-            value={'Solana'}
-            onClick={GoToSolana}
-            sx={{ 
-              fontFamily:"Orbitron_600SemiBold",
-              // color:"#000",
-            }}
-          >
-            <ListItemIcon>
-              <img src={LogoSolana} height={15} width={15} style={{ objectFit:'contain'}}/>
-            </ListItemIcon>
-            Solana 
-          </MenuItem>  
-      
-          <MenuItem
-            value={'Tezos'}
-            onClick={GoToTezos}
-            sx={{ 
-              fontFamily:"Orbitron_600SemiBold",
-              // color:"#000",
-            }}
-          >
-            <ListItemIcon>
-              <img src={LogoTezos} height={15} width={15} style={{ objectFit:'contain'}}/>
-            </ListItemIcon>
-            Tezos 
-          </MenuItem>                       
+                
         </Select>
       </FormControl>
 
