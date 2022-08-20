@@ -11,7 +11,7 @@ import React from "react";
 import ButtonMetamask from './ButtonMetamask';
 import DrawerMenu from './Buttons/DrawerMenu';
 
-import DropDownBlockchains from './Buttons/button-header/dropdown-blockchains';
+import DropDownBlockchains from './buttons/button-header/dropdown-blockchains';
 
 import { useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
