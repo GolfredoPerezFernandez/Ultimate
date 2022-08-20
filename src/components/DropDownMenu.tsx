@@ -170,7 +170,7 @@ export const DropdownMenuDemo = (props: any) => {
               <ListItemIcon>
                 <Avatar  src="/static/images/avatar/1.jpg" sx={{ width: 35, height: 35 }}/>
               </ListItemIcon>
-               2.000.000
+            {props.balance}
             </MenuItem> 
 
             <Divider />
