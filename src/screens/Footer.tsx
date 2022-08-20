@@ -31,43 +31,45 @@ export default function Footer({width,height}) {
 // Fonts import
 
   return (
-<Stack style={{backgroundColor:'black',marginTop:100}}>
-<Typography
-              sx={{
-                marginLeft: 5,
-                marginRight: 5,
-                marginTop: 10,
-                marginBottom:5,
-                fontFamily: "Orbitron_900Black",
-                      color: "#FFF",
-                alignSelf: "center",
-                fontSize: 35,
-              }}
-            >
-          UltimateNFT will be everywhere.. 
-            </Typography>
-    <Stack style={{flexDirection:'row',alignItems:'center', justifyContent:'center'}} sx={{mt:{xs:10, sm:2, md:1, lg:1, xl:1}, mx:{xs:3, sm:3, md:4, lg:10, xl:10,}}}>
+    <Stack style={{backgroundColor:'black',marginTop:100}}>
+      
+      <Typography
+                sx={{
+                  marginLeft: 5,
+                  marginRight: 5,
+                  marginTop: 10,
+                  marginBottom:5,
+                  fontFamily: "Orbitron_900Black",
+                        color: "#FFF",
+                  alignSelf: "center",
+                  fontSize: 35,
+                }}
+              >
+            UltimateNFT will be everywhere.. 
+      </Typography>
 
-            <CardMedia
-            component="img"
-            image={polygon}
-            alt="Logo"
-            sx={{width: {xs:40, sm:40, md:50, lg:80, xl:80}, objectFit:'cover',}}
-            />          <CardMedia
-            component="img"
-            image={binance}
-            alt="Logo"
-            sx={{marginLeft:5,marginRight:5,width: {xs:80, sm:80, md:100, lg:200, xl:200}, objectFit:'cover',}}
-            />       <CardMedia
-            component="img"
-            image={cronos}
-            alt="Logo"
-            sx={{width: {xs:80, sm:80, md:100, lg:200, xl:200}, objectFit:'cover',}}
-            />    
-                
-    </Stack>
+      <Stack style={{flexDirection:'row',alignItems:'center', justifyContent:'center'}} sx={{mt:{xs:10, sm:2, md:1, lg:1, xl:1}, mx:{xs:3, sm:3, md:4, lg:10, xl:10,}}}>
 
-    <Stack style={{flexDirection:'row',alignItems:'center', justifyContent:'center'}} sx={{mt:{xs:10, sm:2, md:1, lg:1, xl:1}, mx:{xs:3, sm:3, md:4, lg:10, xl:10,}}}>
+              <CardMedia
+              component="img"
+              image={polygon}
+              alt="Logo"
+              sx={{width: {xs:40, sm:40, md:50, lg:80, xl:80}, objectFit:'cover',}}
+              />          <CardMedia
+              component="img"
+              image={binance}
+              alt="Logo"
+              sx={{marginLeft:5,marginRight:5,width: {xs:80, sm:80, md:100, lg:200, xl:200}, objectFit:'cover',}}
+              />       <CardMedia
+              component="img"
+              image={cronos}
+              alt="Logo"
+              sx={{width: {xs:80, sm:80, md:100, lg:200, xl:200}, objectFit:'cover',}}
+              />    
+                  
+      </Stack>
+
+      <Stack style={{flexDirection:'row',alignItems:'center', justifyContent:'center'}} sx={{mt:{xs:10, sm:2, md:1, lg:1, xl:1}, mx:{xs:3, sm:3, md:4, lg:10, xl:10,}}}>
 
     <CardMedia
             component="img"
@@ -82,21 +84,20 @@ export default function Footer({width,height}) {
             sx={{marginLeft:5,marginRight:5,width: {xs:20, sm:20, md:30, lg:40, xl:40}, objectFit:'cover',}}
             />   
     
-</Stack>
+      </Stack>
              
-        <Grid 
+      <Grid 
         container 
         justifyContent="center"
         alignItems="center"
         mt={20}
-        mb={3}>
-
- 
+        mb={3}
+      >
 
         <Grid item  xs={12} sm={6} md={3}>
           
         <Grid  style={{alignSelf:'center',justifyContent:'center',alignItems:'center'}} item  >
-               <ButtonsSocialMedia/>   
+              <ButtonsSocialMedia/>   
               </Grid>
         <Typography
         
@@ -118,9 +119,9 @@ export default function Footer({width,height}) {
                   Privacy & terms
                   </Typography >
                 </Typography >
-              </Grid>
-       
         </Grid>
-</Stack>
+      
+      </Grid>
+    </Stack>
   );
 }

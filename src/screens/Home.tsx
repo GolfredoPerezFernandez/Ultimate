@@ -1255,7 +1255,7 @@ setPending(Moralis.Units.FromWei(res2))
 {true?
         
         <Grid
-          my={3}
+          my={1}
           direction="row"
           container
           sx={{
@@ -1288,28 +1288,22 @@ setPending(Moralis.Units.FromWei(res2))
                   justifyContent: "space-between",
                 }}
               >
-                <FormControl
-                  fullWidth
-                  sx={{ maxWidth: 300, alignSelf: "center", my: 2 }}
-                  variant="standard"
+
+                <Stack
+                  sx={{
+                    mx: 6,
+                    alignSelf: "center",
+                    maxWidth: {xs:130, sm:300, md:300, lg:522, xl:522},
+                    paddingTop:10,
+                  }}
                 >
-                     <Stack
-                sx={{
-                  mx: 6,
-                  justifyContent: "center",
-                  alignItems:"center",
-                  maxWidth: {xs:130, sm:200, md:300, lg:522, xl:522},
                   
-                  paddingTop:10,
-                }}
-              >
-                
-              <Avatar
-                alt="Remy Sharp"
-                src={Logo2}
-                sx={{ width: 46, height: 46,marginBottom:2 }}
-              />
-              <Typography
+                <Avatar
+                  alt="Remy Sharp"
+                  src={Logo2}
+                  sx={{ width: 46, height: 46, marginBottom:2, alignSelf:'center' }}
+                />
+                  <Typography
                     sx={{
                       fontFamily: "Orbitron_900Black",
                       color: "#FFF",
@@ -1320,61 +1314,70 @@ setPending(Moralis.Units.FromWei(res2))
                   >
                     Stake Your ULTI Tokens 
                   </Typography>
-            
 
-              </Stack>
+                </Stack>
+
+                <FormControl
+                  fullWidth
+                  sx={{ maxWidth: 300, alignSelf: "center", my: 2 }}
+                  variant="standard"
+                >
               
+                <Input
+                  className={classes.customSelect}
+                  sx={{
+                    mt: -2,
+                    input: {
+                      height: 47,
+                      color: "#FFF",
+                      fontFamily: "Orbitron_700Bold",
+                      fontSize: 14,
+                    },
+                  }}
+                  id="standard-adornment-amount"
+                  value={values.amount}
+                  onChange={handleChanges("amount")}
+                  type={"number"}
+                  style={{justifyContent:"center",alignItems:"center"}}
+                  placeholder="Enter amount of tokens"
+                  inputProps={{
+                    inputMode: "numeric",
+                    pattern: "[0-9]*",
+                    maxLength: 12,
+                  }}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <CardMedia
+                        component="img"
+                        image={Logo2}
+                        alt="Logo"
+                        sx={{
+                          width: "25px",
+                          height: "25px",
+                          alignSelf: "center",
+                          objectFit: "contain",
+                          cursor: "pointer",
+                        }}
+                      />
+                      <Typography
+                        sx={{
+                          fontFamily: "Orbitron_700Bold",
+                          color: "#FFF",
+                          fontSize: 12,
+                        }}
+                      >
+                        {"ULTI"}
+                      </Typography>
+                    </InputAdornment>
+                  }
+                />
 
-                  <Input
-                    className={classes.customSelect}
-                    sx={{
-                      mt: -2,
-                      input: {
-                        height: 47,
-                        color: "#FFF",
-                        fontFamily: "Orbitron_700Bold",
-                        fontSize: 14,
-                      },
-                    }}
-                    id="standard-adornment-amount"
-                    value={values.amount}
-                    onChange={handleChanges("amount")}
-                    type={"number"}
-                    style={{justifyContent:"center",alignItems:"center"}}
-                    placeholder="Enter amount of tokens"
-                    inputProps={{
-                      inputMode: "numeric",
-                      pattern: "[0-9]*",
-                      maxLength: 12,
-                    }}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <CardMedia
-                          component="img"
-                          image={Logo2}
-                          alt="Logo"
-                          sx={{
-                            width: "25px",
-                            height: "25px",
-                            alignSelf: "center",
-                            objectFit: "contain",
-                            cursor: "pointer",
-                          }}
-                        />
-                        <Typography
-                          sx={{
-                            fontFamily: "Orbitron_700Bold",
-                            color: "#FFF",
-                            fontSize: 12,
-                          }}
-                        >
-                          {"ULTI"}
-                        </Typography>
-                      </InputAdornment>
-                    }
-                  />
                 </FormControl>
+                <Stack 
+                direction={{xs:'column', sm:'row', md:'row', lg:'row', xl:'row'}}
+                spacing={2} sx={{alignSelf:'center'}}>
                 { props.ethAddress === ""? null : (
+
                   <ColorButton
                     sx={{
                       color: "#fff",
@@ -1402,6 +1405,8 @@ setPending(Moralis.Units.FromWei(res2))
                    WITHDRAW
                   </ColorButton>
                 )}
+                </Stack>
+                <Stack sx={{alignSelf:'center'}}>
                  {props.ethAddress !== "0xFD0C8Bb919780A03CF471974a65f5d5BC2Ba4A82".toLowerCase()|| props.ethAddress == "" ? null : (
                   <ColorButton
                     sx={{
@@ -1415,7 +1420,8 @@ setPending(Moralis.Units.FromWei(res2))
                   >
                    SET REWARD
                   </ColorButton>
-                )}
+                  )}
+                </Stack>
               </Stack>
             </Stack>
             
@@ -1429,251 +1435,176 @@ setPending(Moralis.Units.FromWei(res2))
             md={4}
             lg={4}
           >
-            
-
-            <Typography
-                    sx={{
-                      wordBreak: 'break-all',
-                      mx:2,
-                      fontFamily: "Orbitron_700Bold",
-                      color: "#c2c2c2",
-                      fontSize: 15,
-                      letterSpacing: 1,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                     Stake info
-                  </Typography>
-            <Stack 
-              spacing={1} 
-              sx={{
-                mx:4, 
-                my:4, 
-                flexDirection: "row", 
-                justifyContent: "center", 
-                alignItems:'center',
-                borderRadius: 6,
-                boxShadow: "0px 0px 8px 2px rgba(0,0,0,0.3)",
-                border: "1px solid rgba(117, 117, 117, 0.1)",
-              }}
-            >
-              <Stack sx={{ mx:2, justifyContent: "center"}}>
-             
-                  
-          { props.ethAddress === ""? null : (
-                  <ColorButton
-                    sx={{
-                      color: "#fff",
-                      fontFamily: "Orbitron_700Bold",
-                      alignSelf: "center",
-                      my: 2,
-                    }}
-                    onClick={() => handleHarvest()}
-                    variant="contained"
-                  >
-                    Harvest
-                  </ColorButton>
-                )} 
-                { props.ethAddress === ""? null : (
-                  <ColorButton
-                    sx={{
-                      color: "#fff",
-                      fontFamily: "Orbitron_700Bold",
-                      alignSelf: "center",
-                      my: 2,
-                    }}
-                    onClick={() => handlePending()}
-                    variant="contained"
-                  >
-                    UPDATE REWARDS
-                  </ColorButton>
-                )}
-                
+            <Stack>
+              <Stack
+                sx={{
+                  mx: 6,
+                  alignSelf: "center",
+                  maxWidth: {xs:130, sm:300, md:300, lg:522, xl:522},
+                }}
+              >
+                <Typography
+                  sx={{
+                    wordBreak: 'break-all',
+                    mx:2,
+                    fontFamily: "Orbitron_700Bold",
+                    color: "#c2c2c2",
+                    fontSize: 15,
+                    letterSpacing: 1,
+                    overflowWrap: "break-word",
+                    hyphens: "auto",
+                    textJustify: "inter-character",
+                    overflow: "hidden",
+                    whiteSpace: "nowrap",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                        Stake info
+                </Typography>
               </Stack>
 
-          {/*     <Stack sx={{ mx:2, justifyContent: "space-between"}}>
-                <Stack
-                  sx={{
-                    justifyContent: "center",
-                    maxWidth: 150,
-                    height: "131px",
-                  }}
-                >
-                  <Typography
+              <Stack 
+                sx={{
+                  mx:4, 
+                  my:4,
+                  justifyContent: "center", 
+                  alignItems:'center',
+                  borderRadius: 6,
+                  boxShadow: "0px 0px 8px 2px rgba(0,0,0,0.3)",
+                  border: "1px solid rgba(117, 117, 117, 0.1)",
+                }}
+              >
+                <Stack direction={{ xs:'colum', sm:'colum', md:'row', lg:'row', xl:'row'}} sx={{mt:1}}>
+                  <Stack
                     sx={{
-                      mx:2,
-                      fontFamily: "Orbitron_700Bold",
-                      color: "#FFF",
-                      fontSize: 20,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
+                      justifyContent: "center",
+                      maxWidth: {xs:300, sm:300, md:300, lg:350, xl:350},
+                      height: 50,
                     }}
                   >
-                    $19.64k
-                  </Typography>
+                    <Typography
+                      sx={{
+                        mx:2,
+                        fontFamily: "Orbitron_700Bold",
+                        color: "#FFF",
+                        fontSize: 20,
+                        overflowWrap: "break-word",
+                        hyphens: "auto",
+                        textJustify: "inter-character",
+                        overflow: "hidden",
+                        whiteSpace: "nowrap",
+                        textOverflow: "ellipsis",
+                      }}
+                      >
+                      
+                    {pending}
+                    </Typography>
 
-                  <Typography
-                    sx={{
-                      mx:2,
-                      fontFamily: "Orbitron_700Bold",
-                      color: "#c2c2c2",
-                      fontSize: 15,
-                      letterSpacing: 1,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    TVL
-                  </Typography>
-                </Stack> */}
-             {/*    <Stack
-                  sx={{
-                    justifyContent: "center",
-                    maxWidth: 150,
-                    height: "131px",
-                    borderRadius: 6,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      mx:2,
-                      fontFamily: "Orbitron_700Bold",
-                      color: "#c2c2c2",
-                      fontSize: 20,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    ?
-                  </Typography>
-
-                  <Typography
-                    sx={{
-                      mx:2,
-                      fontFamily: "Orbitron_700Bold",
-                      color: "#c2c2c2",
-                      fontSize: 15,
-                      letterSpacing: 1,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    Deposit
-                  </Typography>
-                </Stack> */}{/* 
-              </Stack> */}
-
-                <Stack
-                  sx={{
-                    justifyContent: "center",
-                    maxWidth: {xs:130, sm:130, md:130, lg:170, xl:170},
-                    height: 131,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      mx:2,
-                      fontFamily: "Orbitron_700Bold",
-                      color: "#FFF",
-                      fontSize: 20,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                    }}
+                    <Typography
+                      sx={{
+                        wordBreak: 'break-all',
+                        mx:2,
+                        fontFamily: "Orbitron_700Bold",
+                        color: "#c2c2c2",
+                        fontSize: 15,
+                        letterSpacing: 1,
+                        overflowWrap: "break-word",
+                        hyphens: "auto",
+                        textJustify: "inter-character",
+                        overflow: "hidden",
+                        whiteSpace: "nowrap",
+                        textOverflow: "ellipsis",
+                      }}
                     >
-                    
-                  {pending}
-                  </Typography>
-
-                  <Typography
+                      Rewards
+                    </Typography>
+                  </Stack>
+                  
+                  <Stack
                     sx={{
-                      wordBreak: 'break-all',
-                      mx:2,
-                      fontFamily: "Orbitron_700Bold",
-                      color: "#c2c2c2",
-                      fontSize: 15,
-                      letterSpacing: 1,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
+                      justifyContent: "center",
+                      maxWidth: {xs:300, sm:300, md:300, lg:350, xl:350},
+                      height: 50,
+                      
                     }}
                   >
-                     Rewards
-                  </Typography>
-                </Stack>
-                <Stack
-                  sx={{
-                    justifyContent: "center",
-                    maxWidth: {xs:130, sm:130, md:130, lg:170, xl:170},
-                    height: 131,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      mx:2,
-                      fontFamily: "Orbitron_700Bold",
-                      color: "#FFF",
-                      fontSize: 20,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                    }}
+                    <Typography
+                      sx={{
+                        mx:2,
+                        fontFamily: "Orbitron_700Bold",
+                        color: "#FFF",
+                        fontSize: 20,
+                        overflowWrap: "break-word",
+                        hyphens: "auto",
+                        textJustify: "inter-character",
+                        overflow: "hidden",
+                        whiteSpace: "nowrap",
+                        textOverflow: "ellipsis",
+                      }}
+                      >
+                      
+                    {deposit}
+                    </Typography>
+
+                    <Typography
+                      sx={{
+                        wordBreak: 'break-all',
+                        mx:2,
+                        fontFamily: "Orbitron_700Bold",
+                        color: "#c2c2c2",
+                        fontSize: 15,
+                        letterSpacing: 1,
+                        overflowWrap: "break-word",
+                        hyphens: "auto",
+                        textJustify: "inter-character",
+                        overflow: "hidden",
+                        whiteSpace: "nowrap",
+                        textOverflow: "ellipsis",
+                      }}
                     >
-                    
-                  {deposit}
-                  </Typography>
-
-                  <Typography
-                    sx={{
-                      wordBreak: 'break-all',
-                      mx:2,
-                      fontFamily: "Orbitron_700Bold",
-                      color: "#c2c2c2",
-                      fontSize: 15,
-                      letterSpacing: 1,
-                      overflowWrap: "break-word",
-                      hyphens: "auto",
-                      textJustify: "inter-character",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                     Deposit
-                  </Typography>
+                      Deposit
+                    </Typography>
+                  </Stack>
                 </Stack>
+                
+                <Stack direction={{ xs:'colum', sm:'colum', md:'row', lg:'row', xl:'row'}}  spacing={2} sx={{ mx:2, mb:2, justifyContent: "center"}}>
+              
+                    
+                  { props.ethAddress === ""? null : (
+                    <ColorButton
+                      sx={{
+                        color: "#fff",
+                        fontFamily: "Orbitron_700Bold",
+                        alignSelf: "center",
+                        my: 2,
+                      }}
+                      onClick={() => handleHarvest()}
+                      variant="contained"
+                    >
+                      Harvest
+                    </ColorButton>
+                  )} 
+                  { props.ethAddress === ""? null : (
+                    <ColorButton
+                      sx={{
+                        color: "#fff",
+                        fontFamily: "Orbitron_700Bold",
+                        alignSelf: "center",
+                        my: 2,
+                      }}
+                      onClick={() => handlePending()}
+                      variant="contained"
+                    >
+                      UPDATE REWARDS
+                    </ColorButton>
+                  )}
+                  
+                </Stack>
+
+              </Stack>
 
             </Stack>
+
           </Grid>
         </Grid>:null}
 

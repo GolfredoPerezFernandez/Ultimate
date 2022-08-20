@@ -46,14 +46,18 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-export const DropdownMenuDemo = (props) => {
+export const DropdownMenuDemo = (props: any) => {
 
   const { Moralis,logout } = useMoralis();
   
   const styles = useStyles();
   let navigate = useNavigate();
 
-  function Mynft() {navigate("/Mynft")}
+
+  function GotoRoadMap() {navigate("/road-map")}
+  function GotoAboutUs() {navigate("/about-us")}
+  function GotoHome() {navigate("/")}
+
 
   async function logOut() {
     await logout();
@@ -85,14 +89,15 @@ export const DropdownMenuDemo = (props) => {
 
                       <Typography 
                         sx={{fontFamily: "Orbitron_700Bold",
-                          color:"green",
+                          color:"#1DF364",
                           fontSize:12,
                           overflow: 'hidden',
                           whiteSpace: 'nowrap',
                           maxWidth: 120,
-                          textOverflow: 'ellipsis'
+                          textOverflow: 'ellipsis',
+                          ml:2
                         }}>
-                        {"ONLINE" }
+                        ONLINE
                       </Typography>
                   
                      
@@ -145,7 +150,50 @@ export const DropdownMenuDemo = (props) => {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
-   
+            <Box sx={{alignSelf:'center'}}>
+            <Typography 
+              sx={{
+                fontFamily: "Orbitron_900Black",
+                ml:4,
+                color:"green",
+                fontSize:12,
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                maxWidth: 120,
+                textOverflow: 'ellipsis'
+              }}>
+              Ulti Balance
+            </Typography>
+
+            </Box>
+            <MenuItem  >
+              <ListItemIcon>
+                <Avatar  src="/static/images/avatar/1.jpg" sx={{ width: 35, height: 35 }}/>
+              </ListItemIcon>
+               2.000.000
+            </MenuItem> 
+
+            <Divider />
+            
+            <MenuItem onClick={GotoHome}>
+              <ListItemIcon>
+                <Logout fontSize="small" />
+              </ListItemIcon>
+              Home
+            </MenuItem> 
+            <MenuItem onClick={GotoRoadMap}>
+              <ListItemIcon>
+                <Logout fontSize="small" />
+              </ListItemIcon>
+              RoadMap
+            </MenuItem> 
+            
+            <MenuItem onClick={GotoAboutUs}>
+              <ListItemIcon>
+                <Logout fontSize="small" />
+              </ListItemIcon>
+              About Us
+            </MenuItem> 
 
             <Divider />
 

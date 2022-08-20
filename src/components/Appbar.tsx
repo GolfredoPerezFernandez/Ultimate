@@ -11,6 +11,8 @@ import React from "react";
 import ButtonMetamask from './ButtonMetamask';
 import DrawerMenu from './Buttons/DrawerMenu';
 
+import DropDownBlockchains from './Buttons/button-header/dropdown-blockchains';
+
 import { useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import DropDownMenu from './DropDownMenu';
@@ -74,7 +76,7 @@ sx={{
   mx={{xs:2, sm:5, md:5, lg:2, xl:2}}
   >
 
-      <CardMedia
+    <CardMedia
       onClick={() => navigate("/")}
       component="img"
       image={Logo}
@@ -85,23 +87,14 @@ sx={{
         objectFit:'contain',
         cursor: 'pointer',
       }}
+    />
+
+    <Box>
+      <DropDownBlockchains
+        display={{ xs: 'none', sm: 'none', md: 'block' }}
       />
- <Typography
-                  sx={{
-                    mx:2,
-                    fontFamily: "Orbitron_700Bold",
-                    color: "#FFF",
-                    overflowWrap: "break-word",
-                    hyphens: "auto",
-                    fontSize: 16,
-                    textJustify: "inter-character",
-                    overflow: "hidden",
-                    whiteSpace: "nowrap",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                ULTI Balance :{balance}
-              </Typography>
+    </Box>
+
     <Stack direction='row' spacing={{xs:0,sm:1,md:2,lg:2, xl:2}} sx={{width:120,justifyContent:'center', alignItems:'center'}}>
    
     <Box sx={{ display:  {xs:'block', sm:'block', md:'block', lg:'block', xl:'block'}}}>

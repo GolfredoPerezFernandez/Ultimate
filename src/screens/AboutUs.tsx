@@ -1,281 +1,379 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
+import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
-import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import CardMedia from '@mui/material/CardMedia';
+import { useParams } from "react-router-dom";
+import { Avatar } from '@material-ui/core';
 
-import ButtonPrimary from '@components/buttons/button-primary';
+let Logo = require("../../assets/logo.png");
 
 
-export default function Home() {
+let polygon = require("../../assets/polygon.png");
 
-  return (
-    <Box sx={{mt:12, ml:5}}>
-        <Box sx={{width:'100%', }}>
 
-<Grid
-  container
-  my={8}
-  justifyContent="center"
-  alignItems="center"
->
+const AboutUS = () => {
 
-    <Grid  item xs={12} sm={12} md={7} lg={7} sx={{alignSelf:'flex-start', }}>
-        
-        <Stack sx={{  width:'100%', borderRadius:2, border:'0.5px solid rgba(255, 255, 255, 0.16)', backgroundColor:'#181a21' }}> 
-       
-            <Stack
-            sx={{ alignSelf: 'center', mt:2, mb:4}}
-            >
-                <Typography sx={{  fontFamily: "Orbitron_900Black", color: "#FFFFFF", alignSelf: 'center', fontSize: 45, }}>
-                    hola
-                </Typography >
 
-            </Stack>
+     return (
 
-            <Stack>
-                <Stack
-                sx={{
-                    width:522,
-                    height:522,
-                    alignSelf: 'center',
-                    borderRadius: '5px', 
-                    border: '0.2px solid rgba(255, 255, 255, 0.16)',
-                    backgroundColor: '#14151A',
-                }}
-                >
-                    <CardMedia
-                        width='100%'
-                        height='100%'
-                        component="img"
-                        image={ 'https://cdn.domestika.org/c_fit,dpr_1.0,f_auto,t_base_params,w_610/v1618566365/content-items/007/687/736/oscarllorens-original.jpeg?1618566365'}
-                        alt="Paella dish"
-                        sx={{
-                            borderRadius: '5px',
-                            objectFit: 'cover',
-                        }}
-                    />
+        <Stack sx={{width:'100%', my: 1 }}>
+  
+          <Stack
+            sx={{
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            mb: 5,
+            mx: {xs:3, sm:2 , md:5, lg:5 , xl:5}}}
+          >
 
-                </Stack>
-            </Stack>
-
-            <Stack my={5} direction='row' sx={{alignSelf:'center',  width:'522px', height:'131px', borderRadius:'5px', border:'0.5px solid rgba(255, 255, 255, 0.16)', backgroundColor:'rgba(255, 255, 255, 0.07)' }}> 
-                <Stack
-                    sx={{
-                        width:107,
-                        height:107,
-                        alignSelf: 'center',
-                        my: 2,
-                        mx:2,
-                        borderRadius: '5px', 
-                        border: '0.2px solid rgba(255, 255, 255, 0.16)',
-                        backgroundColor: '#14151A',
-                    }}
-                >
-                    <CardMedia
-                    component="img"
-                    width='100%'
-                    height='100%'
-                    image={'https://cdn.domestika.org/c_fit,dpr_1.0,f_auto,t_base_params,w_610/v1618566365/content-items/007/687/736/oscarllorens-original.jpeg?1618566365'}
-                    alt="Paella dish"
-                    sx={{
-                        borderRadius: '5px',
-                        objectFit:'cover',
-                    }}
-                    />
-                        
-                </Stack>
+            <Stack sx={{alignSelf:'center'}}>
                 
-                <Stack sx={{maxWidth: 380, justifyContent:'space-between', my: 1 , mr: 2 ,}}>
-
-                    <Typography 
-                    sx={{
-                        fontFamily:"Orbitron_900Black",
-                        color:"#fff",
-                        fontSize:20,
-                    }}>
-                        hola
-
-                    </Typography>
-
-                    <Typography 
-                    sx={{
-                        fontFamily:"Orbitron_600SemiBold",
-                        color:"#dbdbdb",
-                        fontSize:15,
-                        letterSpacing: 1,
-                        overflowWrap:'break-word',
-                        hyphens: 'auto',
-                        textJustify: 'inter-character',
-                        // maxWidth: '195ch',
-                        overflow: 'hidden',
-                        whiteSpace: 'nowrap',
-                        textOverflow: 'ellipsis'
-                    }}>
-                       hola
-                    </Typography>
-
-                </Stack>
-
-            </Stack>
-
-            <Stack
-            sx={{ alignSelf: 'center', mt:2, mb:4}}
-            >
-                <Typography sx={{  fontFamily: "Orbitron_900Black", color: "#FFFFFF", alignSelf: 'center', fontSize: 45, }}>
-                        Event Info
+                <Typography 
+                    sx={{ 
+                        fontFamily:"Orbitron_900Black",color:"#FFFFFF",
+                        alignSelf:'center',
+                        fontSize:{xs:22, sm:26, md:40, lg:50, xl:44},   
+                    }}
+                >
+                    About Us
                 </Typography >
 
             </Stack>
 
-            <Stack
-            sx={{width:522, alignSelf: 'center',}}
+            <Grid
+                direction={{xs:'column', sm:'column' , md:'row', lg:'row' , xl:'row'}}
+                container
+                justifyContent="space-between"
+                alignItems="flex-start"
             >
-                <Grid 
-                    container 
-                    my={2}
-                    spacing={{ xs: 2, md: 3 }} 
-                    columns={{ xs: 4, sm: 8, md: 12 }}
-                    justifyContent="center"
-                    alignItems="center"
-                    >
-                        
-                    <Grid  item xs={4} sm={4} md={4} lg={4} sx={{alignSelf:'flex-start', }}>
+                <Grid
+                    sx={{
+                        mt: 2,
+                    }}
+                    item
+                    xs={10}
+                    sm={12}
+                    md={6}
+                    lg={6}
+                >
 
-                    <ButtonPrimary
-                        height='44px'
-                        width='153px'
-                        onClick={() => window.open(`https://${event.eventInstagram}`, "_blank") }
-                        nameButton='Instagram'
-                    
-                    />
+                    <Stack sx={{width:'100%', mx: {xs:1, sm:2 , md:5, lg:5 , xl:5}, alignSelf:'center'}}>
+        
+                        <Typography 
+                           sx={{  fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}
+                        >
+                            Welcome to Ultimate NFT home. The future of digital creators.
+                        </Typography >
+        
+                    </Stack>
+                </Grid>
+            </Grid>
 
-                    </Grid>
+            <Grid
+                container
+                justifyContent="space-between"
+                alignItems="flex-start"
+            >    
+                <Grid
+                    sx={{
+                    mt: 2,
+                    }}
+                    item
+                    xs={10}
+                    sm={12}
+                    md={6}
+                    lg={6}
+                >
+                    <Stack sx={{width:'100%', mx: {xs:1, sm:2 , md:5, lg:5 , xl:5}, alignSelf:'center'}}>
+        
+                        <Typography sx={{  fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
+                            We are a WEB 3 first tool webpage. Ultimate NFT works hard to provide a service responsibly with
+                            our creators to prove our commitment, a DAO will be carried out where users will be included to
+                            be part of the platform to be considered in future decision making.
+                        </Typography >
 
-                    <Grid  item xs={4} sm={4} md={4} lg={4} sx={{alignSelf:'flex-start', }}>
+                    </Stack>
 
-                    <ButtonPrimary
-                        height='44px'
-                        width='153px'
-                        onClick={() => window.open(`https://${event.evenTwitter}`, "_blank") }
-                        nameButton='Twitter'
-                    
-                    />
+                    <Stack sx={{width:'100%',mx: {xs:1, sm:2 , md:5, lg:5 , xl:5}, alignSelf:'center'}}>
+            
+                        <Typography sx={{mt:1, fontFamily:"Orbitron_900Black",color:"#fff" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
+                            Quantities
+                        </Typography >
+                        <Typography sx={{mt:1, fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
+                            • Number of visits per month <br/>
+                            • Collections (artistic) <br/>
+                            • Number of wallet collections <br/>
+                        </Typography >
 
-                    </Grid>
-                    
-                    <Grid  item xs={4} sm={4} md={4} lg={4} sx={{alignSelf:'flex-start', }}>
+                    </Stack>
 
-                    <ButtonPrimary
-                        target="_blank"
-                        minHeight='44px'
-                        minWidth='153px'
-                        onClick={() => window.open(`https://${event.eventDiscord}`, "_blank") }
-                        nameButton='Discord'
-                    
-                    />
+                    <Stack sx={{mt: 1, mx: {xs:1, sm:2 , md:5, lg:5 , xl:5}, alignSelf:'center'}}>
+            
+                        <Typography sx={{mt:1,fontFamily:"Orbitron_900Black",color:"#fff" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18} }}>
+                            Ultimate's Story
+                        </Typography >
+                        <Typography sx={{  fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18} }}>
+                            Two friends were talking about the common problems of the NFT collections and the artists. We
+                            concluded that the problem was not the copy collections, but rather that the true creator of the
+                            NFT was not recognized.
+                        </Typography >
 
-                    </Grid>
-
+                    </Stack>
                 </Grid>
 
-                <Grid 
-                    container 
-                    my={2}
-                    spacing={{ xs: 1, md: 1 }} 
-                    justifyContent="center"
-                    alignItems="center"
+                <Grid
+                    item
+                    xs={10}
+                    sm={12}
+                    md={6}
+                    lg={6}
+                >
+                    <Box
+                        sx={{                  
+                            maxWidth: "500px",
+                            maxHeight: "500px",
+                            mx:4,
+                            mt:{xs:2, sm:2, md:2, lg:0, xl:0}
+                        }}
                     >
-
-                    
-                    <Grid ml={2} item xs={6} sm={6} md={6} lg={4} sx={{alignSelf:'flex-start', }}>
-                       
-                        <ButtonPrimary
-                            minHeight='44px'
-                            minWidth='153px'
-                            onClick={() => window.open(`https://${event.eventMarketUrl}`, "_blank") }
-                            nameButton='Marketplace'
-                        
+                        <CardMedia
+                            component="img"
+                            image={polygon}
+                            alt="Logo"
+                            sx={{
+                            width: "100%",
+                            height: "100%",
+                            alignSelf: "center",
+                            objectFit: "contain",
+                            cursor: "pointer",
+                            mx:{xs:1, sm:2 , md:5, lg:5 , xl:5}
+                            }}
                         />
-
-
-                    </Grid>
-
-                    
-                    <Grid mr={2} item xs={6} sm={6} md={6} lg={4} sx={{alignSelf:'flex-start', }}>
-
-                    <ButtonPrimary
-                        minHeight='44px'
-                        minWidth='153px'
-                        onClick={() => window.open(`https://${event.eventWebSite}`, "_blank") }
-                        nameButton='Website'
-                    />
-
-                    </Grid>
-
+                    </Box>
                 </Grid>
+            </Grid>
 
-            </Stack>
-
-            <Stack
-            sx={{width:522, alignSelf: 'center', my:4}}
+            <Grid
+                container
+                justifyContent="space-between"
+                alignItems="flex-start"
             >
-                <Grid 
-                    container 
-                    spacing={{ xs: 2, md: 1 }} 
-                    justifyContent="center"
-                    alignItems="center"
+                <Grid
+                    item
+                    xs={10}
+                    sm={12}
+                    md={6}
+                    lg={6}
+                    justifyContent='center'
+                    alignItems='center'
+                >
+                    <Box
+                        sx={{                  
+                            maxWidth: "500px",
+                            maxHeight: "300px",
+                            mt:{xs:2, sm:2, md:8, lg:20, xl:20},
+                        }}
                     >
-                        
-                    <Grid  item xs={4} sm={4} md={4} lg={6} sx={{alignSelf:'flex-start', }}>
+                        <CardMedia
+                            component="img"
+                            image={Logo}
+                            alt="Logo"
+                            sx={{
+                            width: "100%",
+                            height: "100%",
+                            alignSelf: "center",
+                            objectFit: "contain",
+                            cursor: "pointer",
+                            mx:{xs:1, sm:2 , md:5, lg:5 , xl:5}
+                            }}
+                        />
+                    </Box>
+                </Grid>
 
-                        
-                        <Typography sx={{  fontFamily: "Orbitron_400Regular", color: "#FFFFFF", alignSelf: 'center', fontSize: 20, }}>
-                            Date: 2 / 5 / 1990
+                <Grid
+                    item
+                    xs={10}
+                    sm={12}
+                    md={6}
+                    lg={6}
+                >
+
+                    <Stack sx={{mr: 1, alignSelf:'center'}}>
+            
+                        <Typography sx={{mt:3, fontFamily:"Orbitron_900Black",color:"#fff" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
+                            The Leadership Team
+                        </Typography >
+                        <Typography sx={{mt:1, fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
+                            • Number of visits per month <br/>
+                            • Name<br/>
+                            • Role in the Project<br/>
+                            • Social Network (Twitter)<br/>
+                            • Photo.<br/>
+                            • Work Experience<br/>
+                            
                         </Typography >
 
+                    </Stack>
+                        
+                    <Stack sx={{mb:2, mr: {xs:1, sm:2 , md:3, lg:5 , xl:5}, alignSelf:'center'}}>
+            
+                        <Typography sx={{mt:5, fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
+                        • Nombre: Sergio Girard<br/>
+                        • Función en el proyecto (ocupación): Co Founder.<br/>
+                        • Red social (Twitter): @Sergio_G_M<br/>
+                        • Foto:<br/>
+                        • Experiencia Laboral (Background): Empresario.<br/>
+                        </Typography >
 
-                    </Grid>
+                    </Stack>
+                </Grid>
 
-                    <Grid  item xs={4} sm={4} md={4} lg={6} sx={{alignSelf:'flex-start', }}>
+            </Grid>
 
-                        <Typography sx={{  fontFamily: "Orbitron_400Regular", color: "#FFFFFF", alignSelf: 'center', fontSize: 20, }}>
-                            Blockchain: polygon
+            <Grid
+                container
+                justifyContent="space-between"
+                alignItems="flex-start"
+            >    
+                <Grid 
+                    sx={{alignItems:'center', mx:{xs:1, sm:2 , md:5, lg:5 , xl:5}}}
+                    item
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                >
+
+                    <Stack
+                    direction={{xs:'column', sm:'column' , md:'row', lg:'row' , xl:'row'}}
+                    spacing={4}
+                    sx={{justifyContent:'center'}}>
+
+                        <Stack 
+                        direction='row'
+                        spacing={1}
+                        sx={{mr: {xs:1, sm:2 , md:5, lg:5 , xl:5}, alignSelf:'center'}}>
+
+                            <Typography sx={{ fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
+                            • Nombre: FELIX SANCHEZ QUIRARTE<br/>
+                            • Función en el proyecto (ocupación): INVERSIONISTA<br/>
+                            • Red social (Twitter): El wero (FSANCHEZQUIRARTE)<br/>
+                            • Foto:<br/>
+                            • Experiencia Laboral (Background): EMPRESARIO.<br/>
+                            
+                            </Typography >
+
+                        </Stack>
+
+                        <Stack 
+                        direction='row'
+                        spacing={1}
+                        sx={{mr: {xs:1, sm:2 , md:5, lg:5 , xl:5}, alignSelf:'center'}}>
+                
+                            <Typography sx={{ fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
+                            • Nombre: German Palma<br/>
+                            • Función en el proyecto (ocupación):<br/>
+                            • Red social (Twitter): <a target="_blank" href="https://twitter.com/Web3German">Web3German</a><br/>
+                            • Foto:<br/>
+                            • Experiencia Laboral (Background):<br/>
+                            - Experience in sales with digital marketing<br/>
+                            - Ex-educator on "Revolucion Latina" Investment Academy<br/>
+                            - Moderator in some previous projects<br/>
+                            - Current Head Mod of "Visionaires<br/>
+                            </Typography >
+
+                        </Stack>
+
+                    </Stack>    
+                </Grid>
+
+            </Grid>
+            
+            <Stack sx={{alignSelf: 'center'}}>
+                <Grid
+                    container
+                >    
+                    <Grid 
+                        sx={{alignItems:'center',mt:1, mx:{xs:0, sm:2 , md:5, lg:5 , xl:5}}}
+                        item
+                        xs={12}
+                        sm={12}
+                        md={12}
+                        lg={12}
+                    >
+
+                        <Typography sx={{ fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
+                        • Luis Gatica.<br/>
+                        • Legal advisor web3<br/>
+                        • Su twitter: @LuisKikeGatica<br/>
+                        • abg. y notario especializado en temas de Web3<br/>
+                        
                         </Typography >
 
                     </Grid>
 
                 </Grid>
-
             </Stack>
+            
+            <Grid
+                container
+                justifyContent="space-between"
+                alignItems="flex-start"
+            >    
+                <Grid 
+                    sx={{alignItems:'center'}}
+                    item
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                >
 
-            <Stack
-            sx={{width:522, alignSelf: 'center', my:4}}
-            >
+                    <Stack
+                    direction={{xs:'column', sm:'column' , md:'row', lg:'row' , xl:'row'}}
+                    spacing={4}
+                    sx={{mt: 1, justifyContent:'center'}}>
 
-                <Box>
-                    <Typography   sx={{  fontFamily: "Orbitron_400Regular", color: "#FFFFFF", fontSize: 20, }}>
-                        hola hola hola
-                    </Typography >
-                </Box>
-          
+                        <Stack 
+                        spacing={1}
+                        sx={{mr: {xs:1, sm:2 , md:5, lg:5 , xl:5}, alignSelf:'center'}}>
+                            <Typography sx={{mt:1, fontFamily:"Orbitron_900Black",color:"#fff" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
+                            Services
+                            </Typography >
+                            <Typography sx={{ fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
+                            • List your event<br/>
+                            • List your event, configure your information, and get verified.<br/>
+                            • Promote<br/>
+                            • Partnership Opportunities<br/>
+                            • Actual Partnerships<br/>
+                            
+                            </Typography >
 
-            </Stack>
+                        </Stack>
 
+                        <Stack 
+                        spacing={1}
+                        sx={{mr: {xs:0, sm:2 , md:5, lg:5 , xl:5}}}>
+                            <Typography sx={{mt:1, fontFamily:"Orbitron_900Black",color:"#fff" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
+                             Get in Touch    
+                            </Typography >
+                            <Typography sx={{  fontFamily:"Orbitron_900Black",color:"#78777a" , fontSize:{xs:16, sm:26, md:32, lg:16, xl:18},   }}>
+                            • Support<br/>
+                            • Careers<br/>
+                            
+                            </Typography >
 
-        </Stack>
+                        </Stack>
 
-    </Grid>
+                    </Stack>    
+                </Grid>
+
+            </Grid>
+          </Stack>
     
-
-
-</Grid>
-
-
-
-</Box>
-    </Box>
-  );
-};
+        </Stack>
+    );
+}
+export default AboutUS
