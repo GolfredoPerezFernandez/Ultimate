@@ -92,7 +92,7 @@ init()
           style={{flex:1,alignSelf:'stretch'}}
           source={Background}
           >    
-           {/* <ParticlesBg type="cobweb" color="#fff" bg={true} /> */}
+           <ParticlesBg type="cobweb" color="#fff" bg={true} />
 
         <Appbar setEthAddress={setEthAddress} ethAddress={ethAddress} />
         <Routes>
