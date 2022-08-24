@@ -177,7 +177,7 @@ const RoadMap = () => {
                         lg={5}
                     >
                         <MediaControlCardLeftImg
-                        title='Live From Space'
+                        title='TOKEN RELEASE'
                         description='Lizards are a widespread group of squamate reptiles, 
                         with over 6,000 species, ranging across all continents except AntarcticaMac Miller'
                         link="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2022/01/nft-2576437.jpg"
@@ -196,7 +196,7 @@ const RoadMap = () => {
                     >
                 
                         <MediaControlCardRightImg
-                        title='Live From Space'
+                        title='TOKEN STAKING'
                         description='Lizards are a widespread group of squamate reptiles, 
                         with over 6,000 species, ranging across all continents except AntarcticaMac Miller'
                         link="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2022/01/nft-2576437.jpg"
@@ -223,7 +223,7 @@ const RoadMap = () => {
                         lg={5}
                     >
                         <MediaControlCardLeftImg
-                        title='Live From Space'
+                        title='MARKETPLACE'
                         description='Lizards are a widespread group of squamate reptiles, 
                         with over 6,000 species, ranging across all continents except AntarcticaMac Miller'
                         link="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2022/01/nft-2576437.jpg"
@@ -243,7 +243,7 @@ const RoadMap = () => {
                     >
                 
                         <MediaControlCardRightImg
-                        title='Live From Space'
+                        title='NFT STAKING'
                         description='Lizards are a widespread group of squamate reptiles, 
                         with over 6,000 species, ranging across all continents except AntarcticaMac Miller'
                         link="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2022/01/nft-2576437.jpg"
@@ -253,7 +253,98 @@ const RoadMap = () => {
 
                 </Grid>
             </Stack>
+                    <Stack sx={{mt: 8, alignSelf:'center'}}>
+                <Grid
+                    container
+                    justifyContent={{xs:'center', sm: 'center', md: 'center', lg: 'space-between', xl:'space-between'}}
+                    alignItems="flex-start"
+                    sx={{width:'100%',}}
+                >    
+                    <Grid 
+                        sx={{ alignItems:'center'}}
+                        item
+                        xs={12}
+                        sm={8}
+                        md={5}
+                        lg={5}
+                    >
+                        <MediaControlCardLeftImg
+                        title='LOTTERY'
+                        description='Lizards are a widespread group of squamate reptiles, 
+                        with over 6,000 species, ranging across all continents except AntarcticaMac Miller'
+                        link="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2022/01/nft-2576437.jpg"
+                        />
 
+                    </Grid>
+
+                    <Grid 
+                        sx={{alignItems:'center'}}
+                        item
+                        xs={12}
+                        sm={8}
+                        md={5}
+                        lg={5}
+                        mt={5}
+
+                    >
+                
+                        <MediaControlCardRightImg
+                        title='CASINO GAMES'
+                        description='Lizards are a widespread group of squamate reptiles, 
+                        with over 6,000 species, ranging across all continents except AntarcticaMac Miller'
+                        link="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2022/01/nft-2576437.jpg"
+                        />
+
+                    </Grid>
+
+                </Grid>
+            </Stack>
+            <Stack sx={{mt: 8, alignSelf:'center'}}>
+                <Grid
+                    container
+                    justifyContent={{xs:'center', sm: 'center', md: 'center', lg: 'space-between', xl:'space-between'}}
+                    alignItems="flex-start"
+                    sx={{width:'100%',}}
+                >    
+                    <Grid 
+                        sx={{ alignItems:'center'}}
+                        item
+                        xs={12}
+                        sm={8}
+                        md={5}
+                        lg={5}
+                    >
+                        <MediaControlCardLeftImg
+                        title='VR METAVERSE MULTICHAIN DEVELOPMENT'
+                        description='Lizards are a widespread group of squamate reptiles, 
+                        with over 6,000 species, ranging across all continents except AntarcticaMac Miller'
+                        link="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2022/01/nft-2576437.jpg"
+                        />
+
+                    </Grid>
+
+                    <Grid 
+                        sx={{alignItems:'center'}}
+                        item
+                        xs={12}
+                        sm={8}
+                        md={5}
+                        lg={5}
+                        mt={5}
+
+                    >
+                
+                        <MediaControlCardRightImg
+                        title='CHARITY PROGRAM'
+                        description='Lizards are a widespread group of squamate reptiles, 
+                        with over 6,000 species, ranging across all continents except AntarcticaMac Miller'
+                        link="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2022/01/nft-2576437.jpg"
+                        />
+
+                    </Grid>
+
+                </Grid>
+            </Stack>
           </Stack>
     
         </Stack>

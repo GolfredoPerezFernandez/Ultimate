@@ -127,25 +127,7 @@ const Benefits = () => {
             mx: {xs:1, sm:2 , md:2, lg:5 , xl:5}}}
             
           >
-            <Stack 
-                sx={{
-                    mt:{xs: 0, sm: 0, md: 0, lg: 25, xl: 25},
-                    alignSelf:'center', 
-                    width: {xs: 55, sm: 55, md: 55, lg: 55, xl: 55}, 
-                    height: {xs: 0, sm: 0, md: 0, lg: 800, xl: 800},
-                    position: 'absolute',
-                    zIndex: -1,
-                    display: {xs: 'none', sm: 'none', md: 'none', lg: 'block', xl: 'block'}
-                }}
-            >
-
-                <CardMedia
-                component="img"
-                sx={{ width: 55, height: '100%' }}
-                image={BgRoadMap}
-                alt="Live from space album cover"
-                />
-            </Stack>
+        
 
             <Stack sx={{alignSelf:'center'}}>
                 
@@ -177,7 +159,7 @@ const Benefits = () => {
                         lg={5}
                     >
                         <MediaControlCardLeftImg
-                        title='Live From Space'
+                        title='TOKEN HOLDERS'
                         description='Lizards are a widespread group of squamate reptiles, 
                         with over 6,000 species, ranging across all continents except AntarcticaMac Miller'
                         link="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2022/01/nft-2576437.jpg"
@@ -196,7 +178,7 @@ const Benefits = () => {
                     >
                 
                         <MediaControlCardRightImg
-                        title='Live From Space'
+                        title='NFTS HOLDERS'
                         description='Lizards are a widespread group of squamate reptiles, 
                         with over 6,000 species, ranging across all continents except AntarcticaMac Miller'
                         link="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2022/01/nft-2576437.jpg"
@@ -223,7 +205,7 @@ const Benefits = () => {
                         lg={5}
                     >
                         <MediaControlCardLeftImg
-                        title='Live From Space'
+                        title='AIRDROPS'
                         description='Lizards are a widespread group of squamate reptiles, 
                         with over 6,000 species, ranging across all continents except AntarcticaMac Miller'
                         link="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2022/01/nft-2576437.jpg"
@@ -243,7 +225,7 @@ const Benefits = () => {
                     >
                 
                         <MediaControlCardRightImg
-                        title='Live From Space'
+                        title='SPECIAL REWARDS'
                         description='Lizards are a widespread group of squamate reptiles, 
                         with over 6,000 species, ranging across all continents except AntarcticaMac Miller'
                         link="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2022/01/nft-2576437.jpg"
