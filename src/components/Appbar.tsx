@@ -64,6 +64,8 @@ function GotoBenefits() {navigate("/benefits")}
 function GotoRoadMap() {navigate("/road-map")}
 function GotoAboutUs() {navigate("/about-us")}
 function GotoWhitepaper() {navigate("/whitepaper")}
+function GotoMarketplace() {navigate("/whitepaper")}
+
 
 return ( <AppBar 
 position="sticky" 
@@ -122,7 +124,7 @@ sx={{
       sx={{fontFamily: "Orbitron_700Bold", fontSize:14,color: "#fff", alignSelf: "center",  }}
       onClick={()=>GotoWhitepaper()}  
     >
-      WHITEPAPER
+      MARKETPLACE
     </Typography>
     <Stack direction='row' spacing={{xs:0,sm:1,md:2,lg:2, xl:2}} sx={{width:120,justifyContent:'center', alignItems:'center'}}>
    

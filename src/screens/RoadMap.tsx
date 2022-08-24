@@ -289,7 +289,7 @@ const RoadMap = () => {
                     >
                 
                         <MediaControlCardRightImg
-                        title='CASINO GAMES'
+                        title='CASINO & GAMING'
                         description='Lizards are a widespread group of squamate reptiles, 
                         with over 6,000 species, ranging across all continents except AntarcticaMac Miller'
                         link="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2022/01/nft-2576437.jpg"
