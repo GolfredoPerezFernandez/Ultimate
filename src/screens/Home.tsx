@@ -779,7 +779,7 @@ setPending(Moralis.Units.FromWei(res2))
                 fontSize: 35,
               }}
             >        
-                 COMMUNITY-DRIVEN MULTI BLOCKCHAIN ECOSYSTEM ACCELERATOR
+               MULTICHAIN ECOSYSTEM OPTIZER  
 
             </Typography>
 
@@ -787,6 +787,7 @@ setPending(Moralis.Units.FromWei(res2))
               sx={{
                 marginLeft: 5,
                 marginRight: 5,
+                flexDirection:"row",
                 marginBottom: 3,
                 alignSelf: "center",
                 borderRadius: "5px",
@@ -799,9 +800,27 @@ setPending(Moralis.Units.FromWei(res2))
                   fontSize: 16,
                 }}
               >
-                             ULTIMATE DAO is a Value-oriented, sustainable and decentralized hybrid yield optimizer driven by community (AMM and yield aggregator).
+                             Powered by ULTIMATE
+                
 
               </Typography>
+              <Avatar
+                  alt="Remy Sharp"
+                  src={Logo2}
+                  sx={{ width: 26,marginRight:1,marginLeft:1, height: 26, marginBottom:2, alignSelf:'center' }}
+                />
+              <Typography
+                sx={{
+                  color: "#FFF",
+                  fontFamily: "Orbitron_900Black",
+                  fontSize: 16,
+                }}
+              >
+                           ULTI TOKEN
+                
+
+              </Typography>
+             
             </Stack>
           </Grid>
         </Grid>
