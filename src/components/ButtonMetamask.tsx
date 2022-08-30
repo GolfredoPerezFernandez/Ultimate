@@ -9,6 +9,11 @@ import CardMedia from '@mui/material/CardMedia';
 import CircularProgress from '@mui/material/CircularProgress';
 import _ from 'lodash';
 
+const Web3 = require("web3");
+
+
+import * as abi from "./abi";
+
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
   color: theme.palette.getContrastText("#637bfe"),

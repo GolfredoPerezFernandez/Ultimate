@@ -174,6 +174,9 @@ export const DropdownMenuDemo = (props: any) => {
             </MenuItem> 
 
             <Divider />
+            <MenuItem onClick={logOut} >
+         {"Log Out"}
+            </MenuItem> 
           </Menu>
 
     </Box>

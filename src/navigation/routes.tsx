@@ -17,10 +17,13 @@ const AboutUs = React.lazy(() => import('@screens/AboutUs'));
 const RoadMap = React.lazy(() => import('@screens/RoadMap'));
 const Whitepaper = React.lazy(() => import('@screens/Whitepaper'));
 
+const Web3 = require("web3");
 
 let Background = require("../../assets/background.png");
 
 let polygon = require("../../assets/logo.png");
+
+import * as abi from "./abi";
 
 export default function Navigator() {
 
@@ -52,18 +55,116 @@ export default function Navigator() {
         ctx.closePath();
     }
   };
+  const [pending, setPending] = React.useState(0);
+  const [deposit, setDeposit] = React.useState("0");
+  const [holders, setHolders] = React.useState(0);
+  const [circulating, setCirculating] = React.useState(0);
+  const [totalSupply, setTotalSupply] = React.useState(0);
+  const [burned, setBurned] = React.useState(0);
     React.useEffect(()=>{
     async function init(){
-     
- if(user){
-  let address =user.get("ethAddress")
-  setEthAddress( address)
+      try{
 
- } 
-    }  
+     await Moralis.enableWeb3()
+    }catch{
+    }
+      if(true){
+        
+        console.log("entro")
+      const chainIdPoly =137;
+      const chainName = "Polygon";
+      const currencyName = "MATIC";
+      const currencySymbol = "MATIC";
+      const rpcUrl = "https://polygon-rpc.com/";
+      const blockExplorerUrl = "https://mumbai.polygonscan.com/";
+
+      try{
+
+      await Moralis.addNetwork(
+        chainIdPoly,
+        chainName,
+        currencyName,
+        currencySymbol,
+        rpcUrl,
+        blockExplorerUrl
+       );
+      }catch{
+      }
+       const CHAINPOLYGON = await Moralis.chainId;
+   
+       if (CHAINPOLYGON !== '0x89') {
+        return
+       }
+       
+  
+          const options3 = {
+            contractAddress: "0x301d135E85FA8C8839Ba738eA4Cc9868Cab520Bd",
+            functionName: "balanceOf",
+            abi: abi.token,
+            params: { account: "0x000000000000000000000000000000000000dead" },
+          };
+          const balanceOf = await Moralis.executeFunction(options3);
+  console.log(balanceOf)
+          setBurned(parseFloat(balanceOf));
+  
+          const options4 = {
+            contractAddress: "0x301d135E85FA8C8839Ba738eA4Cc9868Cab520Bd",
+            functionName: "totalSupply",
+            abi: abi.token,
+          };
+          const totalSupply = await Moralis.executeFunction(options4);
+          console.log(totalSupply)
+          let val =
+            (await Moralis.Units.FromWei(totalSupply)) -
+            (await Moralis.Units.FromWei(parseFloat(balanceOf)));
+          setCirculating(val);
+          const options33 = {
+            chain: "matic",
+            date: new Date().toString(),
+          };
+          const date = await Moralis.Web3API.native.getDateToBlock(options33);
+          const holders = {
+            chainId: 137,
+            address: "0x301d135E85FA8C8839Ba738eA4Cc9868Cab520Bd",
+            pageSize: 10000,
+            startingBlock: "0",
+            endingBlock: date.block,
+          };
+          let val2 = await Moralis.Units.FromWei(totalSupply);
+  
+          console.log(val2)
+
+          setTotalSupply(parseFloat(val2));
+        await Moralis.initPlugins();
+          let covalent =  await Moralis.Plugins.covalent.getChangesInTokenHolerBetweenBlockHeights(
+              holders
+            );
+          console.log(JSON.stringify(covalent));
+          setHolders(covalent.data.items.length);
+                  
+        const web3 =await new Web3(Moralis.provider);
+        const contract = await new web3.eth.Contract(abi.masterUlti,"0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C") 
+      if(user){
+
+        const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: user.get("ethAddress")})
+        const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: user.get("ethAddress")})
+         console.log(Moralis.Units.FromWei(pending))
+        setPending(Moralis.Units.FromWei(pending)) 
+        
+  
+        let address =user.get("ethAddress")
+        setEthAddress(address)
+      setDeposit(Moralis.Units.FromWei(depo.amount))
+      console.log(Moralis.Units.FromWei(depo.amount))
+      }
+}else{
+}
+}
+      
 init()
     },[user])
-     
+
+    
   return (
     <React.Suspense 
     fallback={
@@ -96,9 +197,9 @@ init()
         >    
         <ParticlesBg type="cobweb" color="#fff" bg={true} /> 
 
-        <Appbar setEthAddress={setEthAddress} ethAddress={ethAddress} />
+        <Appbar setPending={setPending} setDeposit={setDeposit} setEthAddress={setEthAddress} ethAddress={ethAddress} />
         <Routes>
-          <Route path="/" element={<Home ethAddress={ethAddress} />}/>
+          <Route path="/" element={<Home totalSupply={totalSupply}  burned={burned} circulating={circulating} holders={holders} pending={pending} deposit={deposit} ethAddress={ethAddress} />}/>
           <Route path="/whitepaper" element={<Whitepaper/>}/>
           <Route path="/road-map" element={<RoadMap/>}/>
           <Route path="/about-us" element={<AboutUs/>}/>

@@ -56,7 +56,7 @@ React.useEffect(()=>{
 }}
 }}
 init()
-},[isWeb3Enabled])
+},[isWeb3Enabled,user])
 
 
 
@@ -143,7 +143,11 @@ sx={{
               :
             <Stack direction="row" sx={{width:100,justifyContent:'center', marginRight:10,alignItems:'center'}}>
            
-              <ButtonMetamask/>
+              <ButtonMetamask 
+              setDeposit={props.setDeposit } 
+              setPending={props.setPending } 
+              setEthAddress={props.setEthAddress } 
+              userAddress={props.ethAddress } />
             </Stack>}
 
       

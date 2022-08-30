@@ -213,85 +213,28 @@ export default function Home(props: any) {
   }
 
   const classes = useStyles();
-  const [pending, setPending] = React.useState(0);
-  const [deposit, setDeposit] = React.useState("0");
-  const [holders, setHolders] = React.useState(0);
-  const [circulating, setCirculating] = React.useState(0);
-  const [totalSupply, setTotalSupply] = React.useState(0);
-  const [burned, setBurned] = React.useState(0);
+  const [pending, setPending] = React.useState(props.pending);
+  const [deposit, setDeposit] = React.useState(props.deposit);
+  const [holders, setHolders] = React.useState(props.holders);
+  const [circulating, setCirculating] = React.useState(props.circulating);
+  const [totalSupply, setTotalSupply] = React.useState(props.totalSupply);
+  const [burned, setBurned] = React.useState(props.burned);
   const [loading, setLoading] = React.useState(false);
   const [values, setValues] = React.useState<any>({
     amount: "",
+    amount2: "",
     to: "",
   });
   React.useEffect(() => {
     async function init() {
-      await enableWeb3();
       if (isWeb3Enabled) {
-        
-      
-      
-        if(props.ethAddress!==""){
-      const web3 =await new Web3(Moralis.provider);
-      console.log(user.get("ethAddress"))
-   
-            const contract = await new web3.eth.Contract(abi.masterUlti,"0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C")
-    
-            const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: props.ethAddress})
-            const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: props.ethAddress})
-             
-            setPending(Moralis.Units.FromWei(pending)) 
-            
-  setDeposit(Moralis.Units.FromWei(depo.amount)) 
-}
-        const options3 = {
-          contractAddress: "0x301d135E85FA8C8839Ba738eA4Cc9868Cab520Bd",
-          functionName: "balanceOf",
-          abi: abi.token,
-          params: { account: "0x000000000000000000000000000000000000dead" },
-        };
-        const balanceOf = await Moralis.executeFunction(options3);
-
-        setBurned(parseFloat(balanceOf));
-
-        const options4 = {
-          contractAddress: "0x301d135E85FA8C8839Ba738eA4Cc9868Cab520Bd",
-          functionName: "totalSupply",
-          abi: abi.token,
-        };
-        const totalSupply = await Moralis.executeFunction(options4);
-        let val =
-          (await Moralis.Units.FromWei(totalSupply)) -
-          (await Moralis.Units.FromWei(parseFloat(balanceOf)));
-        setCirculating(val);
-        const options33 = {
-          chain: "matic",
-          date: new Date().toString(),
-        };
-        const date = await Moralis.Web3API.native.getDateToBlock(options33);
-        const holders = {
-          chainId: 137,
-          address: "0x301d135E85FA8C8839Ba738eA4Cc9868Cab520Bd",
-          pageSize: 10000,
-          startingBlock: "0",
-          endingBlock: date.block,
-        };
-        let val2 = await Moralis.Units.FromWei(totalSupply);
-
-        setTotalSupply(parseFloat(val2));
-      await Moralis.initPlugins();
-        let covalent =  await Moralis.Plugins.covalent.getChangesInTokenHolerBetweenBlockHeights(
-            holders
-          );
-        console.log(JSON.stringify(covalent));
-        setHolders(covalent.data.items.length);
-
+          if(user){ }  
       } else {
       }
     }
 
     init();
-  }, [isWeb3Enabled]);
+  }, [user]);
 
   const handleBurnFrom = async () => {
     setLoading(true);
@@ -464,7 +407,7 @@ export default function Home(props: any) {
         awaitReceipt: true, // should be switched to false
         params: {
           spender: "0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C",
-          amount: Moralis.Units.ETH(values.amount),
+          amount: Moralis.Units.ETH(values.amount2),
         },
       };
 
@@ -552,11 +495,20 @@ export default function Home(props: any) {
           _user: user.get("ethAddress"),
         },
       };
-      console.log("endSale");
+      console.log("endSale"+user.get("ethAddress"));
       let res2 = await Moralis.executeFunction(sendOptions1);
       console.log("endSale"+res2);
       
 setPending(Moralis.Units.FromWei(res2))
+const web3 =await new Web3(Moralis.provider);
+console.log(user.get("ethAddress"))
+
+      const contract = await new web3.eth.Contract(abi.masterUlti,"0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C")
+
+      const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: props.ethAddress})
+       console.log("depo "+JSON.stringify(depo))
+      
+setDeposit(Moralis.Units.FromWei(depo.amount)) 
       setLoading(false);
       return;
     } catch {
@@ -586,6 +538,17 @@ setPending(Moralis.Units.FromWei(res2))
       let res2 = await Moralis.executeFunction(sendOptions1);
       let espera1 = await res2.wait(2);
       console.log(JSON.stringify(espera1));
+      const web3 =await new Web3(Moralis.provider);
+      console.log(user.get("ethAddress"))
+   
+            const contract = await new web3.eth.Contract(abi.masterUlti,"0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C")
+    
+            const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: props.ethAddress})
+            const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: props.ethAddress})
+             console.log("depo "+JSON.stringify(depo))
+            setPending(Moralis.Units.FromWei(pending))   
+            
+  setDeposit(Moralis.Units.FromWei(depo.amount)) 
       setLoading(false);
       return;
     } catch {
@@ -686,7 +649,7 @@ setPending(Moralis.Units.FromWei(res2))
         awaitReceipt: true, // should be switched to false
         params: {
           pid: 0,
-          amount: values.amount,
+          amount: values.amount2,
           to: user.get("ethAddress"),
         },
       };
@@ -702,7 +665,7 @@ setPending(Moralis.Units.FromWei(res2))
     
             const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: props.ethAddress})
             const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: props.ethAddress})
-             
+             console.log("depo "+JSON.stringify(depo))
             setPending(Moralis.Units.FromWei(pending))   
             
   setDeposit(Moralis.Units.FromWei(depo.amount)) 
@@ -748,6 +711,11 @@ setPending(Moralis.Units.FromWei(res2))
           return;
         }
       }
+       if (prop == "amount2") {
+        if (parseFloat(event.target.value).toString().length > 12) {
+          return;
+        }
+      }
       setValues({ ...values, [prop]: event.target.value });
     };
 
@@ -779,7 +747,7 @@ setPending(Moralis.Units.FromWei(res2))
                 fontSize: 35,
               }}
             >        
-               MULTICHAIN ECOSYSTEM OPTIZER  
+               MULTICHAIN ECOSYSTEM OPTIMIZER  
 
             </Typography>
 
@@ -801,9 +769,7 @@ setPending(Moralis.Units.FromWei(res2))
                 }}
               >
                              Powered by ULTIMATE
-                
-
-              </Typography>
+                    </Typography>
               <Avatar
                   alt="Remy Sharp"
                   src={Logo2}
@@ -817,9 +783,7 @@ setPending(Moralis.Units.FromWei(res2))
                 }}
               >
                            ULTI TOKEN
-                
-
-              </Typography>
+             </Typography>
              
             </Stack>
           </Grid>
@@ -1110,7 +1074,7 @@ setPending(Moralis.Units.FromWei(res2))
                     textOverflow: "ellipsis",
                   }}
                 >
-                  {numberWithCommas(circulating) + " ULTI"}
+                  {numberWithCommas(props.circulating) + " ULTI"}
                 </Typography>
               </Stack>
 
@@ -1161,7 +1125,7 @@ setPending(Moralis.Units.FromWei(res2))
                   }}
                 >
                   {" "}
-                  {numberWithCommas(totalSupply) + " ULTI"}
+                  {numberWithCommas(props.totalSupply) + " ULTI"}
                 </Typography>
               </Stack>
             </Stack>
@@ -1213,7 +1177,7 @@ setPending(Moralis.Units.FromWei(res2))
                     textOverflow: "ellipsis",
                   }}
                 >
-                  {"+ " + numberWithCommas(holders)}
+                  {"+ " + numberWithCommas(props.holders)}
                 </Typography>
               </Stack>
 
@@ -1264,7 +1228,7 @@ setPending(Moralis.Units.FromWei(res2))
                   }}
                 >
                   {numberWithCommas(
-                    parseFloat(burned.toString().substring(0, 10))
+                    parseFloat(props.burned.toString().substring(0, 10))
                   ) + " ULTI"}
                 </Typography>
               </Stack>
@@ -1354,8 +1318,8 @@ setPending(Moralis.Units.FromWei(res2))
                     },
                   }}
                   id="standard-adornment-amount"
-                  value={values.amount}
-                  onChange={handleChanges("amount")}
+                  value={values.amount2}
+                  onChange={handleChanges("amount2")}
                   type={"number"}
                   style={{justifyContent:"center",alignItems:"center"}}
                   placeholder="Enter amount of tokens"
@@ -1516,7 +1480,7 @@ setPending(Moralis.Units.FromWei(res2))
                       }}
                       >
                       
-                    {pending}
+                    {props.pending}
                     </Typography>
 
                     <Typography
@@ -1562,7 +1526,7 @@ setPending(Moralis.Units.FromWei(res2))
                       }}
                       >
                       
-                    {deposit}
+                    {props.deposit}
                     </Typography>
 
                     <Typography
