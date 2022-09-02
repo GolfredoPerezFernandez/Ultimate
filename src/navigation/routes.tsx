@@ -146,16 +146,16 @@ export default function Navigator() {
         const contract = await new web3.eth.Contract(abi.masterUlti,"0x3f7c3D11D6485bA92AC94Af11095967c9Bf64A3C") 
       if(user){
 
-        const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: user.get("ethAddress")})
-        const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: user.get("ethAddress")})
-         console.log(Moralis.Units.FromWei(pending))
-        setPending(Moralis.Units.FromWei(pending)) 
-        
-  
-        let address =user.get("ethAddress")
-        setEthAddress(address)
-      setDeposit(Moralis.Units.FromWei(depo.amount))
-      console.log(Moralis.Units.FromWei(depo.amount))
+                const depo = await contract.methods.userInfo(0,user.get("ethAddress")).call({ from: user.get("ethAddress")})
+                const pending = await contract.methods.pendingReward(0,user.get("ethAddress")).call({ from: user.get("ethAddress")})
+                console.log(Moralis.Units.FromWei(pending))
+                setPending(Moralis.Units.FromWei(pending)) 
+                
+          
+                let address =user.get("ethAddress")
+                setEthAddress(address)
+              setDeposit(Moralis.Units.FromWei(depo.amount))
+              console.log(Moralis.Units.FromWei(depo.amount))
       }
 }else{
 }

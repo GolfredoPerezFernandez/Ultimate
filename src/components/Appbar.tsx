@@ -27,6 +27,7 @@ let polygon = require("../../assets/polygon.png");
 
 
 import * as abi from "./abi";
+import { Linking } from 'react-native';
 
 export default function AppBarr(props : any )  {
   const {
@@ -63,7 +64,7 @@ init()
 function GotoBenefits() {navigate("/benefits")}
 function GotoRoadMap() {navigate("/road-map")}
 function GotoAboutUs() {navigate("/about-us")}
-function GotoWhitepaper() {navigate("/whitepaper")}
+function GotoWhitepaper() {Linking.openURL("https://ultimate-marketplace.vercel.app/")}
 function GotoMarketplace() {navigate("/whitepaper")}
 
 
