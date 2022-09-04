@@ -55,7 +55,8 @@ export default function Footer({width,height}) {
               image={polygon}
               alt="Logo"
               sx={{width: {xs:40, sm:40, md:50, lg:80, xl:80}, objectFit:'cover',}}
-              />          <CardMedia
+              />        
+                <CardMedia
               component="img"
               image={binance}
               alt="Logo"
@@ -108,16 +109,7 @@ export default function Footer({width,height}) {
                               fontSize: 12,
                             }}
                           >    Copyright © 2022 UltimateNFT. All Rights Reserved.   
-                <Typography
-                            sx={{
-                              fontFamily: "Orbitron_700Bold",
-                                    color: "#FFF",
-                                    textAlign:'center',
-                              fontSize: 12,
-                            }}
-                          >
-                  Privacy & terms
-                  </Typography >
+       
                 </Typography >
         </Grid>
       
